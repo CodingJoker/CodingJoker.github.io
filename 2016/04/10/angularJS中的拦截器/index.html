@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>angularJS中的拦截器 | JumorZhu 写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。
+有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angularJS中的拦截器">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/04/10/angularJS中的拦截器/index.html">
+<meta property="og:site_name" content="JumorZhu 写字的地方">
+<meta property="og:description" content="这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。
+有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？">
+<meta property="og:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png">
+<meta property="og:updated_time" content="2016-05-16T11:41:55.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angularJS中的拦截器">
+<meta name="twitter:description" content="这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。
+有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？">
+<meta name="twitter:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png">
+  
+    <link rel="alternative" href="/atom.xml" title="JumorZhu 写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://www.sliwu6.com/images/201605/goods_img/4422_P_1462608127653.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">JumorZhu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/CodingJoker" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2756368342/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto://550928460@qq.com" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100010736526688" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/前端小记/" style="font-size: 10px;">前端小记</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">JumorZhu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://www.sliwu6.com/images/201605/goods_img/4422_P_1462608127653.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">JumorZhu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/CodingJoker" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2756368342/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto://550928460@qq.com" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100010736526688" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-angularJS中的拦截器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/10/angularJS中的拦截器/" class="article-date">
+  	<time datetime="2016-04-10T03:42:34.000Z" itemprop="datePublished">2016-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      angularJS中的拦截器
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/angularJs/">angularJs</a><a class="article-category-link" href="/categories/angularJs/前端小记/">前端小记</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">别怕，我来帮你解决这个问题。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">在angularJS官方api中$http处有这么一段话：</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">For purposes of global error handling, authentication, or any kind of synchronous or asynchronous pre-processing of request or postprocessing of responses, it is desirable to be able to intercept requests before they are handed to the server and responses before they are handed over to the application code that initiated these requests. The interceptors leverage the <a href="http://docs.angularjs.cn/api/ng/service/$q" target="_blank" rel="external">promise APIs</a> to fulfill this need for both synchronous and asynchronous pre-processing.</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">The interceptors are service factories that are registered with the <code>$httpProvider</code> by adding them to the <code>$httpProvider.interceptors</code>array. The factory is called and injected with dependencies (if specified) and returns the interceptor.</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这段话的意思就是通过使用promise对象（处理回调的一个非常使用的对象）和$httpProvider.interceoters这个数组，按照该数组的指定格式，就可以对请求的过程进行控制，数据的格式是这样的：</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">{</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘request’: function(config) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on success</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return config;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">// optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘requestError’: function(rejection) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on error</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> if (canRecover(rejection)) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return responseOrNewPromise</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return $q.reject(rejection);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> </span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">// optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘response’: function(response) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on success</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return response;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">// optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘responseError’: function(rejection) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on error</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> if (canRecover(rejection)) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return responseOrNewPromise</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return $q.reject(rejection);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">相信一些小伙伴看了这个数据已经有些感觉了，因为angular 的$http是封装了ajax的，所以可以通过$httpProvider控制请求的过程。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">附上我在程序中的代码加深理解：</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">         var App = angular.module(‘app’,[]);</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">App.factory(‘authInterceptor’,[‘$q’,’authService’,’mAlert’,function($q,authService,mAlert){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘request’:function(config){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> var token = (authService.getToken());</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> config.headers[‘author’] = token;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return config ||$q.when(config);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘responseError’ :function(resError) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> if(resError.status == 404){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> mAlert.alert({</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> title:’系统提示’,</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> body:’请求资源未找到’</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> })</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return $q.reject(resError);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}])</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">.provider(‘authService’,function(){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> var token=”zhumin”,</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> self = this;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> self.$get = function(){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> getToken:function(){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return token;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}).config([‘$httpProvider’,function($httpProvider){</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">$httpProvider.interceptors.push(‘authInterceptor’)</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}])</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> mAlert是我自己封装的一个模态框，可以忽略。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">factory返回了一个$httpProvider.interceptors数据规定的格式，用于当request之前为header添加token，reponseError用与服务端返回错误状态时的操作。provider相当于封装了一个类，用于factory中调用。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">在config中将拦截器注入数据中，就可以实现在整个引用程序中的ajax请求的header中带上token，效果不错吧~</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">效果图如下：</span></p>
+<p><a href="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png" target="_blank" rel="external"><img src="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png" alt="" title="httpProvider"></a></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/17/关于邮箱前端架构的一些思考/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          关于邮箱前端架构的一些思考
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="angularJS中的拦截器" data-title="angularJS中的拦截器" data-url="http://CodingJoker.github.io/2016/04/10/angularJS中的拦截器/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 JumorZhu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

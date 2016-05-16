@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>关于邮箱前端架构的一些思考 | JumorZhu 写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。
+突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于邮箱前端架构的一些思考">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/04/17/关于邮箱前端架构的一些思考/index.html">
+<meta property="og:site_name" content="JumorZhu 写字的地方">
+<meta property="og:description" content="因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。
+突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控">
+<meta property="og:updated_time" content="2016-05-16T11:41:55.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于邮箱前端架构的一些思考">
+<meta name="twitter:description" content="因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。
+突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控">
+  
+    <link rel="alternative" href="/atom.xml" title="JumorZhu 写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://www.sliwu6.com/images/201605/goods_img/4422_P_1462608127653.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">JumorZhu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/CodingJoker" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2756368342/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto://550928460@qq.com" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100010736526688" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/前端小记/" style="font-size: 10px;">前端小记</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">JumorZhu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://www.sliwu6.com/images/201605/goods_img/4422_P_1462608127653.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">JumorZhu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/CodingJoker" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2756368342/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto://550928460@qq.com" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100010736526688" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-关于邮箱前端架构的一些思考" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/17/关于邮箱前端架构的一些思考/" class="article-date">
+  	<time datetime="2016-04-17T05:55:16.000Z" itemprop="datePublished">2016-04-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于邮箱前端架构的一些思考
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/angularJs/">angularJs</a><a class="article-category-link" href="/categories/angularJs/前端小记/">前端小记</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控制等等都需要涉及到，这就给我出了一个难题，如何实现，组织，完善各个模块是我在邮箱开发过程中不断思考的问题。下面我来分享一些我在邮箱前端架构中的一些体会和心得。</span></p>
+<p><strong><span style="font-family: 'trebuchet ms', geneva; font-size: large;">1.项目目录结构清晰明了，基于项目所使用的框架的功能来组件项目目录。</span></strong></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">项目目录结构：</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">app</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">components</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">angular-1.5.x</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">jquery</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">tpls</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">img</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">css</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">js</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">common</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">controller</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">directive</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">fliter</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">model</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">service</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">app.js</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">scss</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">fonts</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">data</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">index.html</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">build</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">结合angular框架，我所创建的项目目录如上所示</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">components是第三方库的根目录，所有使用的第三方库都放在里面，而团队自己开发的库放在js/common中。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">tpls是一些模板文件，用过angular的同学应该都知道，它是用为路由提供模板文件的。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">scss是用来简化css的编写过程的，我们使用gulp来将它下面的.scss文件编译成css目录下的.css文件</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">data用于存放前端模拟后端数据时创建的json文件。因为我们采用的是前后分离的方式，就不可避免的需要先写些假数据进行调试。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">js 用于存放与项目有关的js文件，旗下除了common都是angular中的组件</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">build 用于存放项目发布时从app下打包出来的项目</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这样邮箱目录的大致框架就出来了，这里有一点建议就是当你在搭建项目目录的时候，你需要考虑到你所使用到的技术，项目如何去打包发布，团队如何协同。一个清晰的目录结构在后期的维护中可以减少很多工作量。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> </span></p>
+<p><strong><span style="font-family: 'trebuchet ms', geneva; font-size: large;">2.项目按功能模块进行开发与版本控制工具git</span></strong></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">考虑到邮箱是单页应用，并且采用的前端框架是angular，所以项目的开发是按照功能板块进行开发的，其实我个人觉得应用都应该按功能板块进行开发，因为不能按照功能板块进行开发的项目，可能当前的架构还不是最优的，还有提升的空间。项目的开发当然不止我一个人，所以需要协同开发，这就涉及到了一个问题，关于代码库中的版本如何控制。在这里我们使用的是git版本控制工具，按功能板块创建branch，合并代码的使用使用merge。虽然使用merge后项目的时间线上的提交很乱，但是我们还是没有使用rebase，因为rebase到master上的时候可能会不止一次的解决冲突，非常不利于团队的合作，如果是一个人开发的话可以使用rebase。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> </span></p>
+<p><strong><span style="font-family: 'trebuchet ms', geneva; font-size: large;">3.各功能模块的交互与邮箱系统的鉴权</span></strong></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">按照各个功能模块开发是非常有好处的，因为你只负责自己的的功能板块与暴露给其他功能模块调用服务API，不用去负责其他板块内对自己板块的调用的逻辑。在邮箱开发过程中，我们使用service来实现功能模块暴露给其他功能模块调用的api，极大的简化了在开发过程中业务逻辑的错综复杂带来的巨大代码逻辑。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">由于项目时采用前后分离的方式，就免不了需要使用异步请求，所以在异步请求之上，我封装了一层鉴权，在邮箱登录之后将token保存在鉴权类的私有变量中，在请求的过程中将token放在header，用于接口请求的鉴权。具体的过程可以看<a href="http://blog.csdn.net/cczhumin/article/details/51111990" target="_blank" rel="external">这里</a>  <a href="http://jumorzhumin.sinaapp.com/2016/04/10/angularjs%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/" target="_blank" rel="external">或这里</a>。</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">以上是我对邮箱架构的思考，在功能板块这里还有许多东西要讲，未完待续哦~</span></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/24/关于邮箱前端架构的一些思考（续一）-功能模块/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          关于邮箱前端架构的一些思考（续一）--功能模块
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/10/angularJS中的拦截器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">angularJS中的拦截器</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="关于邮箱前端架构的一些思考" data-title="关于邮箱前端架构的一些思考" data-url="http://CodingJoker.github.io/2016/04/17/关于邮箱前端架构的一些思考/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 JumorZhu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
