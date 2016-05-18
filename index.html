@@ -123,13 +123,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -245,7 +245,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
   
@@ -784,67 +784,6 @@
 
 
   
-    <article id="post-Days-41" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/07/Days-41/" class="article-date">
-      <time datetime="2016-03-07T11:52:30.000Z" itemprop="datePublished">2016-03-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/07/Days-41/">Days 41</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">今儿也没什么特殊的事情，就是上午搞了搞杂事儿，把我上午一天的事情都耽误了，下午的话搞了搞邮箱，和峰哥讨论了下技术架构和基本的目录结构，规范呀啥的。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">峰哥说叫我在清明节跟他们去杭州和上海玩儿，我想想，可能回去吧，毕竟他们给我报销车费哈哈!</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">但是耽误五天的时间我觉得可能有点长了吧。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">可以考虑下。</span></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/我的搜狐之旅/">我的搜狐之旅</a>
-    </div>
-
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-HTML5语义化" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1057,11 +996,11 @@
 
 
   
-    <article id="post-Days-40" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-实现一个简单的摄像功能（不带传输数据）代码片段" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/04/Days-40/" class="article-date">
-      <time datetime="2016-03-04T11:46:51.000Z" itemprop="datePublished">2016-03-04</time>
+      <a href="/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/" class="article-date">
+      <time datetime="2016-02-23T06:30:23.000Z" itemprop="datePublished">2016-02-23</time>
 </a>
     </div>
   
@@ -1074,7 +1013,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/04/Days-40/">Days 40</a>
+      <a class="article-title" href="/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/">实现一个简单的摄像功能（不带传输数据）代码片段</a>
     </h1>
   
 
@@ -1084,10 +1023,32 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">今儿又在代码中遨游了一天，按葫芦画瓢在angular中写了些自己的服务，还是比较酷炫的，然后下午的时候程行叫我去私聊了一会儿，说给我涨工资，苦日子也算熬到头了，就是离职在入职的手续有点麻烦。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">对了，今儿中午程行请我们吃饭，我去蹭了一顿饭来吃，她点菜也不含糊，都是大菜。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">我这个穷实习生是吃不起的，每天都在进步吧，感觉自己的能力越来越强了，我想更上一层楼。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">加油JumorZhu！</span></p>
+        <p><span style="font-size: large; font-family: 'trebuchet ms', geneva;">下面用H5的video实现了简单的录像功能，没涉及到数据的传输，因为没有后端，只是一个简单的demo，想做视屏的同学可以用来参考参考。</span></p>
+<p><span style="font-size: large; font-family: 'trebuchet ms', geneva;">技术的关键点在就在navigator上，因为navigator在不同浏览器对于打开摄像头的属性是不一样的，详情请看以下代码：</span></p>
+<blockquote>
+<ol>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;!DOCTYPE html&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;html&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;head&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;title&gt;camera&lt;/title&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/head&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;body&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;video id=”video” autoplay&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/video&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/body&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;script type=”text/javascript”&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var video =document.getElementById(‘video’);</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.getMedia = ( navigator.getUserMedia ||</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.webkitGetUserMedia ||</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.mozGetUserMedia ||</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.msGetUserMedia);</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.getMedia({video:true},function(stream){</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">video.src = window.webkitURL.createObjectURL(stream);</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">},function(error){alert(error)})</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/script&gt;</span></li>
+<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/html&gt;</span></li>
+</ol>
+</blockquote>
 
       
     </div>
@@ -1096,7 +1057,7 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/我的搜狐之旅/">我的搜狐之旅</a>
+    <a class="article-category-link" href="/categories/大犀牛JavaScript/">大犀牛JavaScript</a>
     </div>
 
 
@@ -1118,11 +1079,11 @@
 
 
   
-    <article id="post-Days-39" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-北京，我又来了" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/03/Days-39/" class="article-date">
-      <time datetime="2016-03-03T12:38:18.000Z" itemprop="datePublished">2016-03-03</time>
+      <a href="/2016/02/19/北京，我又来了/" class="article-date">
+      <time datetime="2016-02-19T11:02:20.000Z" itemprop="datePublished">2016-02-19</time>
 </a>
     </div>
   
@@ -1135,7 +1096,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/03/Days-39/">Days 39</a>
+      <a class="article-title" href="/2016/02/19/北京，我又来了/">北京，我又来了</a>
     </h1>
   
 
@@ -1145,11 +1106,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">今儿写了个文案，关于排期的，我觉得是是我写给我自己的，因为我觉得就算是我自己一个人，两个月也能hold住，文案的B格略高，感觉还能hold住。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">下午的时候峰哥告诉我一个好消息就是我长工资了，这也是比较酷炫的，哈哈，也在意料之中。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">我发现我现在对自己的要求越来越高了，我要做 One Px Man， 这肯定很酷炫！精益求精嘛，然后我现在也开始对动画痴迷了~</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">晚上百度的龙哥给我接 了个私活儿，让我周末过去，也行，干点兼职。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">生活还需努力。</span></p>
+        <p>从昨天三点四十开始，我就不断的在路上奔波，但是心里一直悬着，因为怕自己的房被人给定了，又或者是不满意，退房之后又不知道去哪儿。</p>
+<p>不过现在好了，住下了 ，也付了第一期的款项，我现在就打算多搞技术吧，虽然一想到这些事儿就开心不起来，老爹还给我语重心长的说要节约着花钱，所以我实在没办法开心起来了，家里，生活里压力确实大，不过不至于把我饿着。想家里无忧无虑的舒适，但是我不得不出来闯闯吧，记得4年之后的梦想一切都不是事儿，我一定要努力工作，因为我在这里的每一分钟都是我和老爹争取来的，想家，但是我一定会忍住。</p>
+<p>加油，Jumor。</p>
 
       
     </div>
@@ -1158,7 +1117,84 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/我的搜狐之旅/">我的搜狐之旅</a>
+    <a class="article-category-link" href="/categories/CODER的情怀/">CODER的情怀</a>
+    </div>
+
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-再见了，如风的少年" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/07/再见了，如风的少年/" class="article-date">
+      <time datetime="2016-01-07T07:04:12.000Z" itemprop="datePublished">2016-01-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/07/再见了，如风的少年/">再见了，如风的少年</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">如风的少年</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">再见了</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">那些轻狂的时代</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">在无尽的黑夜</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">所有都快要毁灭</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">是什么在为我等待</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">在那神秘的未来</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">你有千言万语想说</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">却只能支支吾吾的倾诉</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">回头问问</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">那面属于你的墙依然在哪儿吗</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">你可以带着所有的悲伤离去</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">但不要忘记</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">当你黯然神伤的时候</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">又是什么</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">能触动你那尘封已久的心</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">哦</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">对了</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">你的墙依然在那儿</span></p>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> </span></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/CODER的情怀/">CODER的情怀</a>
     </div>
 
 
@@ -1182,7 +1218,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
@@ -1194,14 +1230,14 @@
                 2016 JumorZhu
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到访数: 
+                        <span id="site-visit" >Site Visitors: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -1211,7 +1247,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
+                        <span id="page-visit">Page Hits: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -1244,9 +1280,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
