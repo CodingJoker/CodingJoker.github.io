@@ -5,19 +5,25 @@
   
   <title>关于邮箱前端架构的一些思考 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。
-突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控">
+  <meta name="description" content="邮箱架构
+项目目录结构
+项目按功能模块进行开发与版本控制工具Git
+各功能模块的交互与邮箱系统的鉴权">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于邮箱前端架构的一些思考">
 <meta property="og:url" content="http://CodingJoker.github.io/2016/04/17/关于邮箱前端架构的一些思考/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。
-突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控">
-<meta property="og:updated_time" content="2016-05-16T11:41:55.176Z">
+<meta property="og:description" content="邮箱架构
+项目目录结构
+项目按功能模块进行开发与版本控制工具Git
+各功能模块的交互与邮箱系统的鉴权">
+<meta property="og:updated_time" content="2016-05-19T04:50:37.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于邮箱前端架构的一些思考">
-<meta name="twitter:description" content="因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。
-突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控">
+<meta name="twitter:description" content="邮箱架构
+项目目录结构
+项目按功能模块进行开发与版本控制工具Git
+各功能模块的交互与邮箱系统的鉴权">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -162,7 +168,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
                     </div>
                 </section>
                 
@@ -265,35 +271,76 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控制等等都需要涉及到，这就给我出了一个难题，如何实现，组织，完善各个模块是我在邮箱开发过程中不断思考的问题。下面我来分享一些我在邮箱前端架构中的一些体会和心得。</span></p>
-<p><strong><span style="font-family: 'trebuchet ms', geneva; font-size: large;">1.项目目录结构清晰明了，基于项目所使用的框架的功能来组件项目目录。</span></strong></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">项目目录结构：</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">app</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">components</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">angular-1.5.x</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">jquery</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">tpls</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">img</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">css</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">js</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">common</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">controller</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">directive</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">fliter</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">model</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">service</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">app.js</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">scss</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">fonts</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">data</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">index.html</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">build</span></p>
-<p>&nbsp;</p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">结合angular框架，我所创建的项目目录如上所示</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">components是第三方库的根目录，所有使用的第三方库都放在里面，而团队自己开发的库放在js/common中。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">tpls是一些模板文件，用过angular的同学应该都知道，它是用为路由提供模板文件的。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">scss是用来简化css的编写过程的，我们使用gulp来将它下面的.scss文件编译成css目录下的.css文件</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">data用于存放前端模拟后端数据时创建的json文件。因为我们采用的是前后分离的方式，就不可避免的需要先写些假数据进行调试。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">js 用于存放与项目有关的js文件，旗下除了common都是angular中的组件</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">build 用于存放项目发布时从app下打包出来的项目</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这样邮箱目录的大致框架就出来了，这里有一点建议就是当你在搭建项目目录的时候，你需要考虑到你所使用到的技术，项目如何去打包发布，团队如何协同。一个清晰的目录结构在后期的维护中可以减少很多工作量。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> </span></p>
-<p><strong><span style="font-family: 'trebuchet ms', geneva; font-size: large;">2.项目按功能模块进行开发与版本控制工具git</span></strong></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">考虑到邮箱是单页应用，并且采用的前端框架是angular，所以项目的开发是按照功能板块进行开发的，其实我个人觉得应用都应该按功能板块进行开发，因为不能按照功能板块进行开发的项目，可能当前的架构还不是最优的，还有提升的空间。项目的开发当然不止我一个人，所以需要协同开发，这就涉及到了一个问题，关于代码库中的版本如何控制。在这里我们使用的是git版本控制工具，按功能板块创建branch，合并代码的使用使用merge。虽然使用merge后项目的时间线上的提交很乱，但是我们还是没有使用rebase，因为rebase到master上的时候可能会不止一次的解决冲突，非常不利于团队的合作，如果是一个人开发的话可以使用rebase。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> </span></p>
-<p><strong><span style="font-family: 'trebuchet ms', geneva; font-size: large;">3.各功能模块的交互与邮箱系统的鉴权</span></strong></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">按照各个功能模块开发是非常有好处的，因为你只负责自己的的功能板块与暴露给其他功能模块调用服务API，不用去负责其他板块内对自己板块的调用的逻辑。在邮箱开发过程中，我们使用service来实现功能模块暴露给其他功能模块调用的api，极大的简化了在开发过程中业务逻辑的错综复杂带来的巨大代码逻辑。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">由于项目时采用前后分离的方式，就免不了需要使用异步请求，所以在异步请求之上，我封装了一层鉴权，在邮箱登录之后将token保存在鉴权类的私有变量中，在请求的过程中将token放在header，用于接口请求的鉴权。具体的过程可以看<a href="http://blog.csdn.net/cczhumin/article/details/51111990" target="_blank" rel="external">这里</a>  <a href="http://jumorzhumin.sinaapp.com/2016/04/10/angularjs%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/" target="_blank" rel="external">或这里</a>。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">以上是我对邮箱架构的思考，在功能板块这里还有许多东西要讲，未完待续哦~</span></p>
+        <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<ul>
+<li>邮箱架构</li>
+<li>项目目录结构</li>
+<li>项目按功能模块进行开发与版本控制工具Git</li>
+<li>各功能模块的交互与邮箱系统的鉴权</li>
+</ul>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
 
+<pre><code>因为自己到现在都在搜狐实习，并且部门总监也是一个技术强烈热爱者，所以就有幸参与到前端邮箱的开发中来。 在接受这个任务的时候，由于自己对前端框架angular比较熟悉，所以我的前端领导就让我去架构邮箱去了。
+
+突然来了一个这么棘手的活儿，自己真的是压力山大，因为此次邮箱采用的是前后分离的开发方式，考虑的东西实在是太多太杂了，像什么拦截器啊，前端数据缓存，路由，模块之间的交互，公共组件，项目管理，版本控制等等都需要涉及到，这就给我出了一个难题，如何实现，组织，完善各个模块是我在邮箱开发过程中不断思考的问题。下面我来分享一些我在邮箱前端架构中的一些体会和心得。
+</code></pre><blockquote>
+<p><strong>1.项目目录结构清晰明了，基于项目所使用的框架的功能来组件项目目录。</strong></p>
+</blockquote>
+<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">项目目录结构：</span></p>
+<ul>
+<li>app<ul>
+<li>components<ul>
+<li>angular-1.5.x</li>
+<li>jquery</li>
+</ul>
+</li>
+<li>tpls</li>
+<li>img</li>
+<li>scss</li>
+<li>data</li>
+<li>css</li>
+<li>js<ul>
+<li>controller</li>
+<li>service</li>
+<li>fliter</li>
+<li>directive</li>
+<li>common</li>
+<li>app.js</li>
+</ul>
+</li>
+<li>index.html</li>
+</ul>
+</li>
+<li>bulid</li>
+</ul>
+<blockquote>
+<p>结合angular框架，我所创建的项目目录如上所示</p>
+</blockquote>
+<ul>
+<li>components是第三方库的根目录，所有使用的第三方库都放在里面，而团队自己开发的库放在js/common中。</li>
+<li>tpls是一些模板文件，用过angular的同学应该都知道，它是用为路由提供模板文件 的。</li>
+<li>scss是用来简化css的编写过程的，我们使用gulp来将它下面的</li>
+<li>scss文件编译成css目录下的.css文件</li>
+<li>data用于存放前端模拟后端数据时创建的json文件。因为我们采用的是前后分离的方式，就不可避免的需要先写些假数据进行调试。</li>
+<li>js 用于存放与项目有关的js文件，旗下除了common都是angular中的组件</li>
+<li><p>build 用于存放项目发布时从app下打包出来的项目</p>
+<p>  这样邮箱目录的大致框架就出来了，这里有一点建议就是当你在搭建项目目录的时候，你需要考虑到你所使用到的技术，项目如何去打包发布，团队如何协同。一个清晰的目录结构在后期的维护中可以减少很多工作量。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>2.项目按功能模块进行开发与版本控制工具git</strong></p>
+</blockquote>
+<pre><code>考虑到邮箱是单页应用，并且采用的前端框架是angular，所以项目的开发是按照功能板块进行开发的，其实我个人觉得应用都应该按功能板块进行开发，因为不能按照功能板块进行开发的项目，可能当前的架构还不是最优的，还有提升的空间。项目的开发当然不止我一个人，所以需要协同开发，这就涉及到了一个问题，关于代码库中的版本如何控制。在这里我们使用的是git版本控制工具，按功能板块创建branch，合并代码的使用使用merge。虽然使用merge后项目的时间线上的提交很乱，但是我们还是没有使用rebase，因为rebase到master上的时候可能会不止一次的解决冲突，非常不利于团队的合作，如果是一个人开发的话可以使用rebase
+</code></pre><blockquote>
+<p><strong>3.各功能模块的交互与邮箱系统的鉴权</strong></p>
+</blockquote>
+<pre><code>按照各个功能模块开发是非常有好处的，因为你只负责自己的的功能板块与暴露给其他功能模块调用服务API，不用去负责其他板块内对自己板块的调用的逻辑。在邮箱开发过程中，我们使用service来实现功能模块暴露给其他功能模块调用的api，极大的简化了在开发过程中业务逻辑的错综复杂带来的巨大代码逻辑。
+</code></pre><p>由于项目时采用前后分离的方式，就免不了需要使用异步请求，所以在异步请求之上，我封装了一层鉴权，在邮箱登录之后将token保存在鉴权类的私有变量中，在请求的过程中将token放在header，用于接口请求的鉴权。具体的过程可以看<a href="http://blog.csdn.net/cczhumin/article/details/51111990" target="_blank" rel="external">这里</a>  <a href="http://codingjoker.github.com/2016/04/10/angularJS%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/" target="_blank" rel="external">或这里</a>。</p>
+<blockquote>
+<p>以上是我对邮箱架构的思考，在功能板块这里还有许多东西要讲，未完待续哦~</p>
+</blockquote>
+</the>
       
     </div>
     
@@ -304,7 +351,7 @@
         <p><span>本文标题:</span><a href="/2016/04/17/关于邮箱前端架构的一些思考/">关于邮箱前端架构的一些思考</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
         <p><span>发布时间:</span>2016-04-17, 13:55:16</p>
-        <p><span>最后更新:</span>2016-05-16, 19:41:55</p>
+        <p><span>最后更新:</span>2016-05-19, 12:50:37</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/04/17/关于邮箱前端架构的一些思考/" title="关于邮箱前端架构的一些思考">http://CodingJoker.github.io/2016/04/17/关于邮箱前端架构的一些思考/</a>
             <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/04/17/关于邮箱前端架构的一些思考/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

@@ -5,46 +5,19 @@
   
   <title>js关于静态快照（snapshot）的问题 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有这么一个情景，JS代码 如下：
-
-var map = [‘Mr’ : ‘Mr’ , ‘Ms’ : ‘Ms’];//可能有很多个
-var hello = [];
-function say(call , name){
-    console.log(call + “ : “ +  name );
-} 
-//补全代码
-bababa~~~~
-//补全代码
-hello.Mr(‘JuMorZhu’) //">
+  <meta name="description" content="Snapshot
+Javascript闭包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js关于静态快照（snapshot）的问题">
 <meta property="og:url" content="http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="有这么一个情景，JS代码 如下：
-
-var map = [‘Mr’ : ‘Mr’ , ‘Ms’ : ‘Ms’];//可能有很多个
-var hello = [];
-function say(call , name){
-    console.log(call + “ : “ +  name );
-} 
-//补全代码
-bababa~~~~
-//补全代码
-hello.Mr(‘JuMorZhu’) //">
-<meta property="og:updated_time" content="2016-05-16T11:41:55.176Z">
+<meta property="og:description" content="Snapshot
+Javascript闭包">
+<meta property="og:updated_time" content="2016-05-19T05:02:35.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js关于静态快照（snapshot）的问题">
-<meta name="twitter:description" content="有这么一个情景，JS代码 如下：
-
-var map = [‘Mr’ : ‘Mr’ , ‘Ms’ : ‘Ms’];//可能有很多个
-var hello = [];
-function say(call , name){
-    console.log(call + “ : “ +  name );
-} 
-//补全代码
-bababa~~~~
-//补全代码
-hello.Mr(‘JuMorZhu’) //">
+<meta name="twitter:description" content="Snapshot
+Javascript闭包">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -189,7 +162,7 @@ hello.Mr(‘JuMorZhu’) //">
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
                     </div>
                 </section>
                 
@@ -285,6 +258,10 @@ hello.Mr(‘JuMorZhu’) //">
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -292,38 +269,34 @@ hello.Mr(‘JuMorZhu’) //">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">有这么一个情景，JS代码 如下：</span></p>
-<ol>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">var map = [‘Mr’ : ‘Mr’ , ‘Ms’ : ‘Ms’];//可能有很多个</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">var hello = [];</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">function say(call , name){</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">    console.log(call + “ : “ +  name );</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">} </span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">//补全代码</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">bababa~~~~</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">//补全代码</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">hello.Mr(‘JuMorZhu’) // 控制台输出 Mr ： JuMorZhu</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: large;">hello.Ms(‘Fan BingBing’) // 控制台 Ms : Fan BingBing</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">一开始我想到的是这样：</span></li>
-</ol>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">for( var x  in map){</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">  hello[x] = function(name){</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">               say(map[x],name)</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">   }</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">感觉挺简单的，自己还在得意中的时候控制台给我来了一波冷水。。。(+﹏+)~，输出的都是Ms ： Fan BingBing，我擦，你是有多喜欢范冰冰！！！</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">原因是这样的，有没有听过这么一个名词： <strong>静态快照，</strong>是这样的，当你在执行这段代码的时候，Js首先进入预编译阶段，因为你创建函数的时候没有立即执行，所以JS在预编译的时候就会引用这个变量而不是这个变量的值，当你的函数执行的时候才会去找这个变量，在它找这个变量的时候他找不到，就会返回上一层作用域去找这个变量，而这时这个变量是map[x]，而x现在是map数组的最后一个索引，也就是Ms，所以此时无论你hello中有多少个元素，都只有一种输出结果，也就是在这种情况下创建的函数不支持静态快照。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">所以你需要换个思路了~</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">如果说函数执行的时候才去找变量，那么我们问什么不把它运行下呢，这时候我们用到了闭包。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">再来看看用闭包写的代码：</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">for（var x in map）{</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">  hello[x] = (function( call ){</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">    say(call,name)</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">})( map[x] )</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: x-large;">你再试试，怎么样？感受到闭包的强大了吧~</span></p>
-<p>&nbsp;</p>
+        <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<ul>
+<li>Snapshot</li>
+<li>Javascript闭包</li>
+</ul>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
 
+
+<blockquote>
+<p>有这么一个情景，JS代码 如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  var map = [&apos;Mr&apos; : &apos;Mr&apos; , &apos;Ms&apos; : &apos;Ms&apos;];//可能有很多个</span><br><span class="line">  var hello = [];</span><br><span class="line">  function say(call , name)&#123;</span><br><span class="line">      console.log(call + &quot; : &quot; +  name );</span><br><span class="line">  &#125; </span><br><span class="line">  //补全代码</span><br><span class="line">  bababa~~~~</span><br><span class="line">  //补全代码</span><br><span class="line">  hello.Mr(&apos;JuMorZhu&apos;) // 控制台输出 Mr ： JuMorZhu</span><br><span class="line">  hello.Ms(&apos;Fan BingBing&apos;) // 控制台 Ms : Fan BingBing</span><br><span class="line">  一开始我想到的是这样：</span><br><span class="line"></span><br><span class="line">for( var x  in map)&#123;</span><br><span class="line"></span><br><span class="line">  hello[x] = function(name)&#123;</span><br><span class="line"></span><br><span class="line">               say(map[x],name)</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>感觉挺简单的，自己还在得意中的时候控制台给我来了一波冷水。。。(+﹏+)~，输出的都是Ms ： Fan BingBing，我擦，你是有多喜欢范冰冰！！！
+
+原因是这样的，有没有听过这么一个名词： **静态快照，**是这样的，当你在执行这段代码的时候，Js首先进入预编译阶段，因为你创建函数的时候没有立即执行，所以JS在预编译的时候就会引用这个变量而不是这个变量的值，当你的函数执行的时候才会去找这个变量，在它找这个变量的时候他找不到，就会返回上一层作用域去找这个变量，而这时这个变量是map[x]，而x现在是map数组的最后一个索引，也就是Ms，所以此时无论你hello中有多少个元素，都只有一种输出结果，也就是在这种情况下创建的函数不支持静态快照。
+</code></pre><blockquote>
+<p>所以你需要换个思路了~</p>
+</blockquote>
+<pre><code>如果说函数执行的时候才去找变量，那么我们问什么不把它运行下呢，这时候我们用到了闭包。
+
+再来看看用闭包写的代码：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for（var x in map）&#123;</span><br><span class="line"></span><br><span class="line">  hello[x] = (function( call )&#123;</span><br><span class="line"></span><br><span class="line">    say(call,name)</span><br><span class="line"></span><br><span class="line">&#125;)( map[x] )</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>你再试试，怎么样？感受到闭包的强大了吧~</p>
+</blockquote>
+<p>&nbsp;</p>
+</the>
       
     </div>
     
@@ -334,7 +307,7 @@ hello.Mr(‘JuMorZhu’) //">
         <p><span>本文标题:</span><a href="/2015/12/25/js关于静态快照（snapshot）的问题/">js关于静态快照（snapshot）的问题</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
         <p><span>发布时间:</span>2015-12-25, 15:02:34</p>
-        <p><span>最后更新:</span>2016-05-16, 19:41:55</p>
+        <p><span>最后更新:</span>2016-05-19, 13:02:35</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/12/25/js关于静态快照（snapshot）的问题/" title="js关于静态快照（snapshot）的问题">http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/</a>
             <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

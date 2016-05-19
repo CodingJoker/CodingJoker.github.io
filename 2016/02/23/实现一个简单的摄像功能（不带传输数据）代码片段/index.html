@@ -5,37 +5,16 @@
   
   <title>实现一个简单的摄像功能（不带传输数据）代码片段 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下面用H5的video实现了简单的录像功能，没涉及到数据的传输，因为没有后端，只是一个简单的demo，想做视屏的同学可以用来参考参考。
-技术的关键点在就在navigator上，因为navigator在不同浏览器对于打开摄像头的属性是不一样的，详情请看以下代码：
-
-
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-&amp;lt;title&amp;gt;camera">
+  <meta name="description" content="摄像功能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现一个简单的摄像功能（不带传输数据）代码片段">
 <meta property="og:url" content="http://CodingJoker.github.io/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="下面用H5的video实现了简单的录像功能，没涉及到数据的传输，因为没有后端，只是一个简单的demo，想做视屏的同学可以用来参考参考。
-技术的关键点在就在navigator上，因为navigator在不同浏览器对于打开摄像头的属性是不一样的，详情请看以下代码：
-
-
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-&amp;lt;title&amp;gt;camera">
-<meta property="og:updated_time" content="2016-05-16T11:41:55.176Z">
+<meta property="og:description" content="摄像功能">
+<meta property="og:updated_time" content="2016-05-19T04:59:10.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现一个简单的摄像功能（不带传输数据）代码片段">
-<meta name="twitter:description" content="下面用H5的video实现了简单的录像功能，没涉及到数据的传输，因为没有后端，只是一个简单的demo，想做视屏的同学可以用来参考参考。
-技术的关键点在就在navigator上，因为navigator在不同浏览器对于打开摄像头的属性是不一样的，详情请看以下代码：
-
-
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-&amp;lt;title&amp;gt;camera">
+<meta name="twitter:description" content="摄像功能">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -180,7 +159,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
                     </div>
                 </section>
                 
@@ -283,33 +262,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span style="font-size: large; font-family: 'trebuchet ms', geneva;">下面用H5的video实现了简单的录像功能，没涉及到数据的传输，因为没有后端，只是一个简单的demo，想做视屏的同学可以用来参考参考。</span></p>
-<p><span style="font-size: large; font-family: 'trebuchet ms', geneva;">技术的关键点在就在navigator上，因为navigator在不同浏览器对于打开摄像头的属性是不一样的，详情请看以下代码：</span></p>
-<blockquote>
-<ol>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;!DOCTYPE html&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;html&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;head&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;title&gt;camera&lt;/title&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/head&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;body&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;video id=”video” autoplay&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/video&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/body&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;script type=”text/javascript”&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var video =document.getElementById(‘video’);</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.getMedia = ( navigator.getUserMedia ||</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.webkitGetUserMedia ||</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.mozGetUserMedia ||</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.msGetUserMedia);</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">navigator.getMedia({video:true},function(stream){</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">video.src = window.webkitURL.createObjectURL(stream);</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">},function(error){alert(error)})</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/script&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">&lt;/html&gt;</span></li>
-</ol>
-</blockquote>
+        <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<ul>
+<li>摄像功能</li>
+</ul>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
 
+<p>下面用H5的video实现了简单的录像功能，没涉及到数据的传输，因为没有后端，只是一个简单的demo，想做视屏的同学可以用来参考参考。</p>
+<blockquote>
+<p>技术的关键点在就在navigator上，因为navigator在不同浏览器对于打开摄像头的属性是不一样的，详情请看以下代码：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;camera&amp;lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;video id=&quot;video&quot; autoplay&gt;</span><br><span class="line">&lt;/video&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"> &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"> var video =document.getElementById(&apos;video&apos;);</span><br><span class="line"> navigator.getMedia = ( navigator.getUserMedia ||</span><br><span class="line"> navigator.webkitGetUserMedia ||</span><br><span class="line"> navigator.mozGetUserMedia ||</span><br><span class="line"> navigator.msGetUserMedia);</span><br><span class="line"> navigator.getMedia(&#123;video:true&#125;,function(stream)&#123;</span><br><span class="line"> video.src = window.webkitURL.createObjectURL(stream);</span><br><span class="line"> &#125;,function(error)&#123;alert(error)&#125;)</span><br><span class="line"> &lt;/script&gt;</span><br><span class="line"> &lt;/html&gt;</span><br></pre></td></tr></table></figure></the>
       
     </div>
     
@@ -320,7 +284,7 @@
         <p><span>本文标题:</span><a href="/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/">实现一个简单的摄像功能（不带传输数据）代码片段</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
         <p><span>发布时间:</span>2016-02-23, 14:30:23</p>
-        <p><span>最后更新:</span>2016-05-16, 19:41:55</p>
+        <p><span>最后更新:</span>2016-05-19, 12:59:10</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/" title="实现一个简单的摄像功能（不带传输数据）代码片段">http://CodingJoker.github.io/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/</a>
             <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

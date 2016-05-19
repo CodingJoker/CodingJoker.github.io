@@ -5,25 +5,19 @@
   
   <title>微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="微信6.0版本以下内嵌的浏览器在进入二级页面的时候，点击微信自带的返回按纽，返回一级页面，在更多按纽中的从浏览器打开的时候，其实是打开的二级页面的链接，这个bug很奇葩，可能是因为一级页面有缓存之后，返回的时候开发者忘了更新“更多”中附带的url的值了。
-所以就需要我们去手动更改这个url。
-原理我已经说了，就是一级页面的url没有变化，导致了这个bug的产生。
-我们怎样是这个url参数变化呢？">
+  <meta name="description" content="微信webview6.0以下版本出现的bug
+解决方案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解">
 <meta property="og:url" content="http://CodingJoker.github.io/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="微信6.0版本以下内嵌的浏览器在进入二级页面的时候，点击微信自带的返回按纽，返回一级页面，在更多按纽中的从浏览器打开的时候，其实是打开的二级页面的链接，这个bug很奇葩，可能是因为一级页面有缓存之后，返回的时候开发者忘了更新“更多”中附带的url的值了。
-所以就需要我们去手动更改这个url。
-原理我已经说了，就是一级页面的url没有变化，导致了这个bug的产生。
-我们怎样是这个url参数变化呢？">
-<meta property="og:updated_time" content="2016-05-16T11:41:55.176Z">
+<meta property="og:description" content="微信webview6.0以下版本出现的bug
+解决方案">
+<meta property="og:updated_time" content="2016-05-19T05:10:39.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解">
-<meta name="twitter:description" content="微信6.0版本以下内嵌的浏览器在进入二级页面的时候，点击微信自带的返回按纽，返回一级页面，在更多按纽中的从浏览器打开的时候，其实是打开的二级页面的链接，这个bug很奇葩，可能是因为一级页面有缓存之后，返回的时候开发者忘了更新“更多”中附带的url的值了。
-所以就需要我们去手动更改这个url。
-原理我已经说了，就是一级页面的url没有变化，导致了这个bug的产生。
-我们怎样是这个url参数变化呢？">
+<meta name="twitter:description" content="微信webview6.0以下版本出现的bug
+解决方案">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -168,7 +162,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
                     </div>
                 </section>
                 
@@ -271,26 +265,41 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">微信6.0版本以下内嵌的浏览器在进入二级页面的时候，点击微信自带的返回按纽，返回一级页面，在更多按纽中的从浏览器打开的时候，其实是打开的二级页面的链接，这个bug很奇葩，可能是因为一级页面有缓存之后，返回的时候开发者忘了更新“更多”中附带的url的值了。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">所以就需要我们去手动更改这个url。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">原理我已经说了，就是一级页面的url没有变化，导致了这个bug的产生。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">我们怎样是这个url参数变化呢？</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">嗯，容我想想。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这个要结合你的实际情况在代码里面控制逻辑修改的。</span></p>
-<p>&nbsp;</p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">我的应用场景是这样的，在一级页面里面有个按纽，我需要点击它显示一个在一级页面中已经加载好的标签，然后在点击右上角的更多，从浏览器打开，但是在一级页面中有二级页面的链接，用户可能会点击二级页面后再返回回来，这时更多里面的url就变成了二级页面的url，所以 我们需要控制下逻辑。在高版本的微信中没有这个bug。</span></p>
-<p>&nbsp;</p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">首先，当我们点击按钮的时候，判断他是否是低版本的微信，这个需要你使用正则去判断。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">如果是低版本的微信的话，</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">        首先保存现在的地址，var url = location.href;</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">       然后 localtion.href  = url + “?fresh=”+Date.now();</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">   这样你再从低版本的“更多”中打开”从浏览器打开“就不会出现缓存二级页面url的bug；</span></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这个办法巧妙的避开了这个bug，然而对于这种需求是很少的，你可能不会遇到，不过注意下。</span></p>
-<p>&nbsp;</p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">url中附带一个随机的参数时防止浏览器中url缓存，可以及时的更行url对应的state，由不耽误访问该链接，只要你的参数不和原来的参数冲突就行。</span></p>
+        <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<ul>
+<li>微信webview6.0以下版本出现的bug</li>
+<li>解决方案</li>
+</ul>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
 
+<p>微信6.0版本以下内嵌的浏览器在进入二级页面的时候，点击微信自带的返回按纽，返回一级页面，在更多按纽中的从浏览器打开的时候，其实是打开的二级页面的链接，这个bug很奇葩，可能是因为一级页面有缓存之后，返回的时候开发者忘了更新“更多”中附带的url的值了。</p>
+<blockquote>
+<p>所以就需要我们去手动更改这个url。</p>
+</blockquote>
+<p>原理我已经说了，就是一级页面的url没有变化，导致了这个bug的产生。</p>
+<p>我们怎样是这个url参数变化呢？</p>
+<p>嗯，容我想想。</p>
+<p>这个要结合你的实际情况在代码里面控制逻辑修改的。</p>
+<blockquote>
+<p>我的应用场景是这样的</p>
+</blockquote>
+<pre><code>在一级页面里面有个按纽，我需要点击它显示一个在一级页面中已经加载好的标签，然后在点击右上角的更多，从浏览器打开，但是在一级页面中有二级页面的链接，用户可能会点击二级页面后再返回回来，这时更多里面的url就变成了二级页面的url，所以 我们需要控制下逻辑。在高版本的微信中没有这个bug。
+</code></pre><blockquote>
+<p>首先，当我们点击按钮的时候，判断他是否是低版本的微信，这个需要你使用正则去判断。<br>&nbsp;<br>如果是低版本的微信的话，</p>
+</blockquote>
+<pre><code> 首先保存现在的地址，var url = location.href;
+
+然后 localtion.href  = url + &quot;?fresh=&quot;+Date.now();
+</code></pre><blockquote>
+<p>这样你再从低版本的“更多”中打开”从浏览器打开“就不会出现缓存二级页面url的bug；</p>
+</blockquote>
+<pre><code>这个办法巧妙的避开了这个bug，然而对于这种需求是很少的，你可能不会遇到，不过注意下。
+
+
+
+url中附带一个随机的参数时防止浏览器中url缓存，可以及时的更行url对应的state，由不耽误访问该链接，只要你的参数不和原来的参数冲突就行。
+</code></pre></the>
       
     </div>
     
@@ -301,7 +310,7 @@
         <p><span>本文标题:</span><a href="/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/">微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
         <p><span>发布时间:</span>2015-12-09, 20:41:43</p>
-        <p><span>最后更新:</span>2016-05-16, 19:41:55</p>
+        <p><span>最后更新:</span>2016-05-19, 13:10:39</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/" title="微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解">http://CodingJoker.github.io/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/</a>
             <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

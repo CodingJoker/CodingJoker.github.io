@@ -5,20 +5,20 @@
   
   <title>angularJS中的拦截器 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。
-有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？">
+  <meta name="description" content="拦截器的实现原理
+拦截器在Angular如何实现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angularJS中的拦截器">
 <meta property="og:url" content="http://CodingJoker.github.io/2016/04/10/angularJS中的拦截器/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。
-有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？">
+<meta property="og:description" content="拦截器的实现原理
+拦截器在Angular如何实现">
 <meta property="og:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png">
-<meta property="og:updated_time" content="2016-05-16T11:41:55.176Z">
+<meta property="og:updated_time" content="2016-05-19T03:36:47.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angularJS中的拦截器">
-<meta name="twitter:description" content="这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。
-有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？">
+<meta name="twitter:description" content="拦截器的实现原理
+拦截器在Angular如何实现">
 <meta name="twitter:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
@@ -164,7 +164,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
                     </div>
                 </section>
                 
@@ -267,29 +267,38 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">别怕，我来帮你解决这个问题。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">在angularJS官方api中$http处有这么一段话：</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">For purposes of global error handling, authentication, or any kind of synchronous or asynchronous pre-processing of request or postprocessing of responses, it is desirable to be able to intercept requests before they are handed to the server and responses before they are handed over to the application code that initiated these requests. The interceptors leverage the <a href="http://docs.angularjs.cn/api/ng/service/$q" target="_blank" rel="external">promise APIs</a> to fulfill this need for both synchronous and asynchronous pre-processing.</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">The interceptors are service factories that are registered with the <code>$httpProvider</code> by adding them to the <code>$httpProvider.interceptors</code>array. The factory is called and injected with dependencies (if specified) and returns the interceptor.</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这段话的意思就是通过使用promise对象（处理回调的一个非常使用的对象）和$httpProvider.interceoters这个数组，按照该数组的指定格式，就可以对请求的过程进行控制，数据的格式是这样的：</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">{</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘request’: function(config) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on success</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return config;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">// optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘requestError’: function(rejection) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on error</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> if (canRecover(rejection)) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return responseOrNewPromise</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return $q.reject(rejection);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> </span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">// optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘response’: function(response) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on success</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return response;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">// optional method</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘responseError’: function(rejection) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> // do something on error</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> if (canRecover(rejection)) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return responseOrNewPromise</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return $q.reject(rejection);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">相信一些小伙伴看了这个数据已经有些感觉了，因为angular 的$http是封装了ajax的，所以可以通过$httpProvider控制请求的过程。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">附上我在程序中的代码加深理解：</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">         var App = angular.module(‘app’,[]);</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">App.factory(‘authInterceptor’,[‘$q’,’authService’,’mAlert’,function($q,authService,mAlert){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘request’:function(config){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> var token = (authService.getToken());</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> config.headers[‘author’] = token;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return config ||$q.when(config);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> },</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> ‘responseError’ :function(resError) {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> if(resError.status == 404){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> mAlert.alert({</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> title:’系统提示’,</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> body:’请求资源未找到’</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> })</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return $q.reject(resError);</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}])</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">.provider(‘authService’,function(){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> var token=”zhumin”,</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> self = this;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> self.$get = function(){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return {</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> getToken:function(){</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> return token;</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> }</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}).config([‘$httpProvider’,function($httpProvider){</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">$httpProvider.interceptors.push(‘authInterceptor’)</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">}])</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> mAlert是我自己封装的一个模态框，可以忽略。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">factory返回了一个$httpProvider.interceptors数据规定的格式，用于当request之前为header添加token，reponseError用与服务端返回错误状态时的操作。provider相当于封装了一个类，用于factory中调用。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">在config中将拦截器注入数据中，就可以实现在整个引用程序中的ajax请求的header中带上token，效果不错吧~</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">效果图如下：</span></p>
+        <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<ul>
+<li>拦截器的实现原理</li>
+<li>拦截器在Angular如何实现<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+</the></li>
+</ul>
+<p>这里我将的拦截器，是关于前端项目的请求的拦截器，基于angularJS中的httpProvider的。</p>
+<p>有没有这样一种场景，在使用ajax请求的时候，服务端需要验证header中的token和cookie，所以每次请求的时候都需要加上这个token，cookie不用加，每次请求的时候浏览器都会帮你带上，所以你就需要在有ajax的地方都添加一段向header中写token的代码，是不是觉得挺闹心的？</p>
+<p>别怕，我来帮你解决这个问题。</p>
+<blockquote>
+<p>在angularJS官方api中$http处有这么一段话：</p>
+</blockquote>
+<pre><code>For purposes of global error handling, authentication, or any kind of synchronous or asynchronous pre-processing of request or postprocessing of responses, it is desirable to be able to intercept requests before they are handed to the server and responses before they are handed over to the application code that initiated these requests. The interceptors leverage the [promise APIs](http://docs.angularjs.cn/api/ng/service/$q) to fulfill this need for both synchronous and asynchronous pre-processing.
+
+The interceptors are service factories that are registered with the `$httpProvider` by adding them to the `$httpProvider.interceptors`array. The factory is called and injected with dependencies (if specified) and returns the interceptor.
+</code></pre><blockquote>
+<p>这段话的意思就是通过使用promise对象（处理回调的一个非常使用的对象）和$httpProvider.interceoters这个数组，按照该数组的指定格式，就可以对请求的过程进行控制，数据的格式是这样的：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line"></span><br><span class="line"> // optional method</span><br><span class="line"> &apos;request&apos;: function(config) &#123;</span><br><span class="line"> // do something on success</span><br><span class="line"> return config;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line">// optional method</span><br><span class="line"> &apos;requestError&apos;: function(rejection) &#123;</span><br><span class="line"> // do something on error</span><br><span class="line"> if (canRecover(rejection)) &#123;</span><br><span class="line"> return responseOrNewPromise</span><br><span class="line"> &#125;</span><br><span class="line"> return $q.reject(rejection);</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">// optional method</span><br><span class="line"> &apos;response&apos;: function(response) &#123;</span><br><span class="line"> // do something on success</span><br><span class="line"> return response;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line">// optional method</span><br><span class="line"> &apos;responseError&apos;: function(rejection) &#123;</span><br><span class="line"> // do something on error</span><br><span class="line"> if (canRecover(rejection)) &#123;</span><br><span class="line"> return responseOrNewPromise</span><br><span class="line"> &#125;</span><br><span class="line"> return $q.reject(rejection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相信一些小伙伴看了这个数据已经有些感觉了，因为angular 的$http是封装了ajax的，所以可以通过$httpProvider控制请求的过程。</p>
+<blockquote>
+<p>附上我在程序中的代码加深理解：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var App = angular.module(&apos;app&apos;,[]);</span><br><span class="line"></span><br><span class="line">App.factory(&apos;authInterceptor&apos;,[&apos;$q&apos;,&apos;authService&apos;,&apos;mAlert&apos;,function($q,authService,mAlert)&#123;</span><br><span class="line"> return &#123;</span><br><span class="line"> &apos;request&apos;:function(config)&#123;</span><br><span class="line"> var token = (authService.getToken());</span><br><span class="line"> config.headers[&apos;author&apos;] = token;</span><br><span class="line"> return config ||$q.when(config);</span><br><span class="line"> &#125;,</span><br><span class="line"> &apos;responseError&apos; :function(resError) &#123;</span><br><span class="line"> if(resError.status == 404)&#123;</span><br><span class="line"> mAlert.alert(&#123;</span><br><span class="line"> title:&apos;系统提示&apos;,</span><br><span class="line"> body:&apos;请求资源未找到&apos;</span><br><span class="line"> &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"> return $q.reject(resError);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;])</span><br><span class="line">.provider(&apos;authService&apos;,function()&#123;</span><br><span class="line"> var token=&quot;zhumin&quot;,</span><br><span class="line"> self = this;</span><br><span class="line"> self.$get = function()&#123;</span><br><span class="line"> return &#123;</span><br><span class="line"> getToken:function()&#123;</span><br><span class="line"> return token;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;).config([&apos;$httpProvider&apos;,function($httpProvider)&#123;</span><br><span class="line"></span><br><span class="line">$httpProvider.interceptors.push(&apos;authInterceptor&apos;)</span><br><span class="line"></span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p>mAlert是我自己封装的一个模态框，可以忽略。</p>
+<blockquote>
+<p>factory返回了一个$httpProvider.interceptors数据规定的格式，用于当request之前为header添加token，reponseError用与服务端返回错误状态时的操作。provider相当于封装了一个类，用于factory中调用。</p>
+<p>在config中将拦截器注入数据中，就可以实现在整个引用程序中的ajax请求的header中带上token，效果不错吧~</p>
+<p>效果图如下：</p>
+</blockquote>
 <p><a href="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png" target="_blank" rel="external"><img src="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2016/04/httpProvider.png" alt="" title="httpProvider"></a></p>
 <p>&nbsp;</p>
 
@@ -303,7 +312,7 @@
         <p><span>本文标题:</span><a href="/2016/04/10/angularJS中的拦截器/">angularJS中的拦截器</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
         <p><span>发布时间:</span>2016-04-10, 11:42:34</p>
-        <p><span>最后更新:</span>2016-05-16, 19:41:55</p>
+        <p><span>最后更新:</span>2016-05-19, 11:36:47</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/04/10/angularJS中的拦截器/" title="angularJS中的拦截器">http://CodingJoker.github.io/2016/04/10/angularJS中的拦截器/</a>
             <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/04/10/angularJS中的拦截器/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
