@@ -14,6 +14,6 @@ date: 2016-05-18 18:13:07
 ## <a href="https://github.com/CodingJoker">To Visit My Github</a>
 ## Best Wishs！
 
-<div style="text-align: center">
+<div style="text-align: center;max-width:320px;margin:auto">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height=450 src="http://music.163.com/outchain/player?type=0&id=115176368&auto=1&height=430"></iframe>
 </div>
