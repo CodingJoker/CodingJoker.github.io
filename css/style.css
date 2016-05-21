@@ -1399,6 +1399,13 @@ body .ui-tooltip {
   margin: 0.5em auto;
   border-left: 4px solid rgba(147,181,224,0.4);
   background: rgba(255,255,255,0.4);
+  -webkit-box-shadow: 1px 2px 2px rgba(0,0,0,0.1), 1px 1px 3px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 1px 2px 2px rgba(0,0,0,0.1), 1px 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 1px 2px 2px rgba(0,0,0,0.1), 1px 1px 3px rgba(0,0,0,0.3);
+  border-left: 5px solid rgba(112,134,142,0.85);
+  background: rgba(255,255,255,0.7);
+  border-left: 5px solid rgba(85,138,187,0.8);
+  background: rgba(255,255,255,0.7);
 }
 .article-entry blockquote p {
   margin: 0.4em auto;
@@ -2209,6 +2216,10 @@ body .ui-tooltip {
   padding: 0.05em 0.3em;
   -webkit-border-radius: 3px;
   border-radius: 3px;
+  var: 6;
+  color: #fff;
+  background: rgba(153,204,153,0.7);
+  background: rgba(217,83,79,0.45);
 }
 pre .comment,
 pre .title {
@@ -2734,40 +2745,40 @@ pre .javascript .function {
   font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei" "Lucida Grande", Verdana, "Helvetica Neue", Arial;
 }
 .tagcloud a.color0 {
-  background: #88acdb;
+  background: #ba8f6c;
 }
 .tagcloud a.color0::before {
-  border-right-color: #88acdb;
+  border-right-color: #ba8f6c;
 }
 .tagcloud a.color1 {
-  background: #ffa07a;
+  background: #ff945c;
 }
 .tagcloud a.color1::before {
-  border-right-color: #ffa07a;
+  border-right-color: #ff945c;
 }
 .tagcloud a.color2 {
-  background: #f08080;
+  background: #7b5d5f;
 }
 .tagcloud a.color2::before {
-  border-right-color: #f08080;
+  border-right-color: #7b5d5f;
 }
 .tagcloud a.color3 {
-  background: #76becc;
+  background: #f5c7b7;
 }
 .tagcloud a.color3::before {
-  border-right-color: #76becc;
+  border-right-color: #f5c7b7;
 }
 .tagcloud a.color4 {
-  background: #918597;
+  background: #cfb7c4;
 }
 .tagcloud a.color4::before {
-  border-right-color: #918597;
+  border-right-color: #cfb7c4;
 }
 .tagcloud a.color5 {
-  background: #6fc0e4;
+  background: #918597;
 }
 .tagcloud a.color5::before {
-  border-right-color: #6fc0e4;
+  border-right-color: #918597;
 }
 .tagcloud a.color6 {
   background: #bc8f8f;
@@ -2977,4 +2988,14 @@ pre .javascript .function {
   .youyan {
     padding: 20px 10px;
   }
+}
+body {
+  background: #808080;
+}
+.article-header {
+  border-left: 5px solid #666;
+}
+.article-more-link a {
+  background: #4d4d4d;
+  font-size: 0.8em;
 }
