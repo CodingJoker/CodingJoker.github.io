@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8">
+  
+  <title>转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀 | JumorZhu&#39;s Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为什么转战Gulp
+Gulp前端项目打包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/index.html">
+<meta property="og:site_name" content="JumorZhu's Labs">
+<meta property="og:description" content="为什么转战Gulp
+Gulp前端项目打包">
+<meta property="og:updated_time" content="2016-05-25T02:17:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀">
+<meta name="twitter:description" content="为什么转战Gulp
+Gulp前端项目打包">
+  
+    <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/zero.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+      <link href="//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css" rel="stylesheet">
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+<script src="//cdn.bootcss.com/offline-js/0.7.14/offline.min.js"></script>
+<link href="//cdn.bootcss.com/offline-js/0.7.14/themes/offline-language-english.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/offline-js/0.7.14/themes/offline-theme-chrome.css" rel="stylesheet">
+</head>
+<body>
+  <!--[if lt IE 9]>
+<style> body { background: orange !important;} div#container { display: none;} </style>
+<p id="ie-updater">
+    
+        IE6/7/8 aren't Supported<br>Please UPDATE your Browser!<br>
+    
+    <a href="//www.bing.com/search?q=Chrome" target="_blank">Chrome</a>, <a href="//www.bing.com/search?q=Firefox" target="_blank">Firefox</a><br>
+    Hexo Theme <a href="//github.com/MOxFIVE/hexo-theme-yelee" target="_blank">Yelee</a> by MOxFIVE
+</p>
+<![endif]-->
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="http://www.sliwu6.com/images/201605/goods_img/4422_P_1462608127653.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">JumorZhu</a></h1>
+           <div class="total-word-count">
+              <span class="post-count">这货已写了 22.6k 个字了</span>
+           </div>
+        </hgroup>
+
+        
+        
+        <form><input type="text" class="search" placeholder=" Search..."></form>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/CodingJoker" title="GitHub"></a>
+                            
+                                <a class="fa Email" target="_blank" href="mailto:550928460@qq.com" title="Email"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100010736526688" title="Facebook"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2756368342/profile?topnav=1&wvr=6&is_all=1" title="新浪微博"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/my/m/music/playlist?id=37936869" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
+                    </div>
+                </section>
+                
+
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JumorZhu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="http://www.sliwu6.com/images/201605/goods_img/4422_P_1462608127653.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">JumorZhu</a></h1>
+              <div class="total-word-count">
+              <span class="post-count">这货已写了 22.6k 个字了</span>
+              </div>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/CodingJoker" title="GitHub"></a>
+                            
+                                <a class="fa Email" target="_blank" href="mailto:550928460@qq.com" title="Email"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100010736526688" title="Facebook"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2756368342/profile?topnav=1&wvr=6&is_all=1" title="新浪微博"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/my/m/music/playlist?id=37936869" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/" class="article-date">
+      <time datetime="2016-03-27T03:08:40.000Z" itemprop="datePublished">2016-03-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端小记/">前端小记</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<ul>
+<li>为什么转战Gulp</li>
+<li>Gulp前端项目打包<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+</the></li>
+</ul>
+<p>之前一直在使用grunt，总感觉grunt的参数配置方法很繁琐，没有一个比较清晰的流程，加上自己对gulp的流操作比较感兴趣，就决定转战gulp了。</p>
+<p>相信前端er在发布自己的代码时如果不使用前端一些构建工具的话，对频繁上线的项目来说，自己手动压缩打包替换CDN前缀那是一件多么恐怖的事情！所以采用gulp前端构建工具是一个非常明智的选择。</p>
+<blockquote>
+<p>首先来说说发布项目时前端需要进行哪些操作：</p>
+</blockquote>
+<pre><code>1.对静态资源的压缩合并
+2.对js,css，img等资源加MD5戳
+3.对引用了以上加MD5戳的HTML文件进行替换文件内的引用。
+4.为HTML文件内的引用加CDN前缀
+</code></pre><blockquote>
+<p>虽然看起来就这4步，不过写起任务来还是挺麻烦的,上代码：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">  var gulp = require(&apos;gulp&apos;);</span><br><span class="line">  var minimist = require(&apos;minimist&apos;);</span><br><span class="line">  var uglify = require(&apos;gulp-uglify&apos;);</span><br><span class="line">  var minifyHtml = require(&apos;gulp-minify-html&apos;);</span><br><span class="line">  var minifyCss = require(&apos;gulp-minify-css&apos;);</span><br><span class="line">  var rev = require(&apos;gulp-rev&apos;);</span><br><span class="line">  var revReplace = require(&apos;gulp-rev-replace&apos;);</span><br><span class="line">  var prefix = require(&apos;gulp-prefix&apos;);</span><br><span class="line">  var zip = require(&apos;gulp-zip&apos;);</span><br><span class="line">  var gulpSequence = require(&apos;gulp-sequence&apos;);</span><br><span class="line">  var cmd = &#123;</span><br><span class="line">  string: &apos;v&apos;,</span><br><span class="line">  default: &#123; v: &apos;1.0&apos; &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  var option = &#123;</span><br><span class="line">  src:&apos;poster&apos;,</span><br><span class="line">  dest:&apos;poster/build&apos;,</span><br><span class="line">  cdn:&apos;http://sns_wf.cdn.sohusce.com&apos;///poster/</span><br><span class="line">  &#125;</span><br><span class="line">  var options = minimist(process.argv.slice(2), cmd);</span><br><span class="line">  var version = options.v;</span><br><span class="line">  //统一加MD5之后替换引用</span><br><span class="line">  gulp.task(&apos;cdn&apos;,function()&#123;</span><br><span class="line">  var revAll = new RevAll(&#123;dontRenameFile:[/^\/.*.html/]&#125;);// ,/^\/.*.jpg|png/</span><br><span class="line">  gulp.src([option.src+&apos;/templates-dev/*.html&apos;,option.src+&apos;/static/**&apos;])</span><br><span class="line">  .pipe(revAll.revision())</span><br><span class="line">  .pipe(gulp.dest(option.dest+&apos;/&apos;+version))</span><br><span class="line">  .pipe(revAll.versionFile())</span><br><span class="line">  .pipe(gulp.dest(option.dest+&apos;/&apos;+version))</span><br><span class="line">  .pipe(revAll.manifestFile())</span><br><span class="line">  .pipe(gulp.dest(option.dest+&apos;/&apos;+version)); </span><br><span class="line">  &#125;);</span><br><span class="line">  gulp.task(&quot;rep&quot; ,function()&#123;</span><br><span class="line">  var manifest = gulp.src(option.dest + &apos;/&apos;+ version + &quot;/rev-manifest.json&quot;);</span><br><span class="line">  console.log(option.dest +&apos;/&apos;+ version);</span><br><span class="line">  return gulp.src(option.dest +&apos;/&apos;+ version + &apos;/templates-dev/*.html&apos;)</span><br><span class="line">  .pipe(revReplace(&#123;manifest: manifest&#125;))</span><br><span class="line">  .pipe(gulp.dest(option.src +&apos;/templates&apos; ));</span><br><span class="line">  &#125;);</span><br><span class="line">  gulp.task(&apos;prefix&apos;,function()&#123;</span><br><span class="line">  console.log(&apos;加CDN前缀...&apos;);</span><br><span class="line">  return gulp.src(option.src+&apos;/templates/*.html&apos;)</span><br><span class="line">  .pipe(prefix(option.cdn, null))</span><br><span class="line">  .pipe(gulp.dest(option.src+&apos;/templates/&apos;));</span><br><span class="line"> &#125;)</span><br><span class="line">  gulp.task(&apos;htmlmin&apos;,function()&#123;</span><br><span class="line">  return gulp.src([option.src + &apos;/templates/*.html&apos;],&#123;base:option.src &#125;)</span><br><span class="line">  .pipe(minifyHtml())</span><br><span class="line">  .pipe(gulp.dest(option.src));</span><br><span class="line">  &#125;)</span><br><span class="line">  gulp.task(&apos;jsmin&apos;,function()&#123;</span><br><span class="line">  return gulp.src([option.dest +&apos;/&apos;+ version + &apos;/static/js/*.js&apos;,option.dest +&apos;/&apos;+ version + &apos;/static/imgcut/js/*.js&apos;],&#123;base:option.dest +&apos;/&apos;+ version&#125;)</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(option.dest +&apos;/&apos;+ version));</span><br><span class="line">  &#125;)</span><br><span class="line">  gulp.task(&apos;cssmin&apos;,function()&#123;</span><br><span class="line">  return gulp.src([option.dest +&apos;/&apos;+ version + &apos;/static/css/*.css&apos;,option.dest +&apos;/&apos;+ version + &apos;/static/imgcut/css/*.css&apos;],&#123;base:option.dest +&apos;/&apos;+ version&#125;)</span><br><span class="line">.pipe(minifyCss())</span><br><span class="line">.pipe(gulp.dest(option.dest +&apos;/&apos;+ version));</span><br><span class="line">&#125;)</span><br><span class="line">gulp.task(&apos;zip&apos;,function()&#123;</span><br><span class="line">console.log(&apos;压缩中...&apos;)</span><br><span class="line">return gulp.src([option.dest+&apos;/&apos;+version+&apos;/static/**&apos;,])</span><br><span class="line">.pipe(zip(&apos;static.zip&apos;))</span><br><span class="line">.pipe(gulp.dest(option.dest+&apos;/&apos;+version));</span><br><span class="line">&#125;)</span><br><span class="line">gulp.task(&apos;r&apos;,function(cb)&#123;</span><br><span class="line">gulpSequence(&apos;rep&apos;,&apos;prefix&apos;,[&apos;htmlmin&apos;,&apos;jsmin&apos;,&apos;cssmin&apos;],&apos;zip&apos;,cb)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里引用的插件名可以去npm官网上搜下作用和使用方法，这里不再详细叙述，主要讲下几个关键的插件：</p>
+</blockquote>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/gulp-rev-all" title="gulp-rev-all" target="_blank" rel="external">gulp-rev-all</a>  给静态资源加MD5戳，生成源文件名和打了戳的MD5文件名的一个rev-manifest.json文件（这很关键）。</strong></li>
+<li><strong><a href="https://www.npmjs.com/package/gulp-prefix" title="gulp-prefix" target="_blank" rel="external">gulp-prefix</a> 给引用了静态资源的的HTML文件替换引用和加CDN前缀</strong></li>
+<li><strong><a href="https://www.npmjs.com/package/minimist" title="minimist" target="_blank" rel="external">minimist</a> 给任务的执行添加参数 eg: gulp r –v 1.0 </strong></li>
+<li><strong><a href="https://www.npmjs.com/package/gulp-sequence" title="gulp-sequence" target="_blank" rel="external">gulp-sequence</a> 将任务的执行按指定的顺序执行</strong></li>
+</ul>
+<blockquote>
+<p>说完了一些重要的插件，咱再来讲讲咱得任务。</p>
+</blockquote>
+<ul>
+<li><strong>任务cdn 详见插件介绍的gulp-rev-all 。</strong></li>
+<li><strong>任务rep 详见gulp-prefix</strong></li>
+<li><strong>任务htmlmin,cssmin,jsmin,zip 给静态资源压缩后打成一个zip包，方便部署CDN。</strong></li>
+<li><strong>任务r 组织任务的执行，防止子任务执行中的异步操作扰乱整个任务的执行。</strong></li>
+</ul>
+<blockquote>
+<p>这里R任务有个缺点就是没讲CDN任务放在其中，因为CDN任务中包含了多个异步任务，是的在R任务中产生了同步任务的假象，导致后续的操作和产生的结果错误。所以在终端需要执行以下两步任务：</p>
+</blockquote>
+<ul>
+<li><strong>gulp cdn –v 1.0  //生成1.0版本</strong></li>
+<li><strong>gulp r</strong></li>
+<li><strong>一些配置参数写在了option对象中，同学们可以按照自己的需求来修改。其中dest是任务输出目录，打包好的zip文件在bulid/x.x 目录下。</strong></li>
+</ul>
+<blockquote>
+<p>介绍完毕~</p>
+<p>快来跟我转战gulp吧~ </p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/">转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
+        <p><span>发布时间:</span>2016-03-27, 11:08:40</p>
+        <p><span>最后更新:</span>2016-05-25, 10:17:51</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/" title="转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀">http://CodingJoker.github.io/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/04/10/angularJS中的拦截器/">
+                    angularJS中的拦截器
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/">
+                    canvas实现图片尺寸等比压缩并转换为base64字符串
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/" data-title="转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀" data-url="http://CodingJoker.github.io/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jumorzhu"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/10/angularJS中的拦截器/" title="上一篇: angularJS中的拦截器">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/" title="下一篇: canvas实现图片尺寸等比压缩并转换为base64字符串">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/">AngularJs ui-router controller加载两次的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/阿里巴巴2016春季招聘面试体会/">阿里巴巴2016春季招聘面试体会</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/15/腾讯OMG前端面试体会/">腾讯OMG前端面试体会</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/关于邮箱前端架构的一些思考（续一）-功能模块/">关于邮箱前端架构的一些思考（续一）--功能模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/关于邮箱前端架构的一些思考/">关于邮箱前端架构的一些思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/angularJS中的拦截器/">angularJS中的拦截器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/">转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/">canvas实现图片尺寸等比压缩并转换为base64字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/07/HTML5语义化/">HTML5语义化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/">实现一个简单的摄像功能（不带传输数据）代码片段</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/07/再见了，如风的少年/">再见了，如风的少年</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/咱得按规矩来-致《老炮儿》/">咱得按规矩来----致《老炮儿》</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/js关于静态快照（snapshot）的问题/">js关于静态快照（snapshot）的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/24/拿什么拯救你的激情，我的同胞/">拿什么拯救你的激情，我的同胞</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/grunt-contrib-connect-中间件middleware属性/">grunt-contrib-connect 中间件middleware属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/Js实现浏览器下标签页间切换触发的事件/">Js实现浏览器下标签页间切换触发的事件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/19/Js内各种宽度，干货哟/">Js内各种宽度，干货哟~</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/">微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Canvas画布的一些实用技巧/">Canvas画布的一些实用技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/">使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/22/这是一种热爱/">这是一种热爱</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2015-2016 JumorZhu<i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+           <!--  <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div> -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数:
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量:
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 2;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+    <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
