@@ -18,7 +18,7 @@ tags:
 > 有这么一个情景，JS代码 如下：
 
 ```
-  var map = ['Mr' : 'Mr' , 'Ms' : 'Ms'];//可能有很多个
+  var map = ['Mr' : 'Mr' , 'Ms' : 'Ms'];//可能有很多个.
   var hello = [];
   function say(call , name){
       console.log(call + " : " +  name );
