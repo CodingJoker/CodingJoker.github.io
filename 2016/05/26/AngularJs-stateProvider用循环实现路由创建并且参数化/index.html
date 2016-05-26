@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Canvas画布的一些实用技巧 | JumorZhu&#39;s Labs</title>
+  <title>AngularJs $stateProvider用循环实现路由创建并且参数化 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="drawImage
-Canvas绘图环境">
+  <meta name="description" content="angularJs循环创建路由
+使用ui-router实现路由嵌套">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Canvas画布的一些实用技巧">
-<meta property="og:url" content="http://CodingJoker.github.io/2015/12/01/Canvas画布的一些实用技巧/index.html">
+<meta property="og:title" content="AngularJs $stateProvider用循环实现路由创建并且参数化">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="drawImage
-Canvas绘图环境">
-<meta property="og:updated_time" content="2016-05-21T02:17:05.000Z">
+<meta property="og:description" content="angularJs循环创建路由
+使用ui-router实现路由嵌套">
+<meta property="og:updated_time" content="2016-05-26T03:23:53.636Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Canvas画布的一些实用技巧">
-<meta name="twitter:description" content="drawImage
-Canvas绘图环境">
+<meta name="twitter:title" content="AngularJs $stateProvider用循环实现路由创建并且参数化">
+<meta name="twitter:description" content="angularJs循环创建路由
+使用ui-router实现路由嵌套">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -244,11 +244,11 @@ Canvas绘图环境">
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Canvas画布的一些实用技巧" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-AngularJs-stateProvider用循环实现路由创建并且参数化" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/01/Canvas画布的一些实用技巧/" class="article-date">
-      <time datetime="2015-12-01T10:46:03.000Z" itemprop="datePublished">2015-12-01</time>
+      <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" class="article-date">
+      <time datetime="2016-05-26T03:02:47.000Z" itemprop="datePublished">2016-05-26</time>
 </a>
     </div>
   
@@ -261,7 +261,7 @@ Canvas绘图环境">
         
   
     <h1 class="article-title" itemprop="name">
-      Canvas画布的一些实用技巧
+      AngularJs $stateProvider用循环实现路由创建并且参数化
     </h1>
   
 
@@ -270,11 +270,15 @@ Canvas绘图环境">
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/大犀牛JavaScript/">大犀牛JavaScript</a>
+    <a class="article-category-link" href="/categories/angularJs/">angularJs</a><a class="article-category-link" href="/categories/angularJs/前端小记/">前端小记</a>
     </div>
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -284,45 +288,27 @@ Canvas绘图环境">
           
         <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
 <ul>
-<li>drawImage</li>
-<li>Canvas绘图环境</li>
-</ul>
-<a id="more"></a>
+<li>angularJs循环创建路由</li>
+<li>使用ui-router实现路由嵌套<a id="more"></a>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-
-<pre><code>Canvas 画布， 可能对于大多数人都有点陌生，不过，这个真得是一个酷炫的东西，你真的值得拥有，这是我这两天用它的时候产生的一种想法~
-</code></pre><blockquote>
-<p>这篇文章主要介绍的在<strong>Canvas中图片展示</strong>。</p>
-</blockquote>
-<pre><code>有没有想到一种场景，关于图片展示的，就像某宝的商品详情页，当鼠标在图片上移动的时候，在旁边的一个区域出现图片的部分区域放大图。
-</code></pre><blockquote>
-<p>而实现这个的函数就是  drawImage（params_0 - params_8)</p>
-</blockquote>
-<pre><code>他的参数最多有九个，最少有三个，具体用法自查，比较简单，介绍下9个参数时候具体的参数。
-</code></pre><blockquote>
-<p>dramImage（image,src_X,src_Y,src_width,src_height,des_X,des_Y,des_width,des_height）</p>
-</blockquote>
-<ul>
-<li><p>image是一个image对象，使用new Image(),创建的对象，需要制定该对象的src，就是你要处理的图片。</p>
-</li>
-<li><p>src_X,src_Y 对应的是你image.src指向的图像上的坐标，图像的左上角坐标是（0,0），这两个参数就是<strong>相对于原点</strong>的坐标。</p>
-</li>
-<li><p>src_width,src_height是你从你相对原点的位置取得一块区域。</p>
-</li>
+</the></li>
 </ul>
-<pre><code>后面那四个参数你可以类比，哦，对了，des_X,des_Y是**相对Canvas原点**的位置。
-</code></pre><blockquote>
-<p>然后你就可以开始YY了，其实超简单的，只是你没过度过来。^_^</p>
+<p>设想一个场景：在项目开发的过程中，路由越来越多并且这些公用一套模板的时候，会导致路由管理起来太不方便，有点累赘的感觉。</p>
+<blockquote>
+<p>不过不要怕， GG这里有解决方案!</p>
 </blockquote>
-<p>监听鼠标的事件知道吧，用mousemove监听鼠标在对象上的对应位置（相对位置是算出来的，你可以去瞅瞅怎么算，挺简单的）</p>
-<p>然后每次把画布clean了，重画，可以用clearRect这个方法来搞。</p>
-<pre><code>大致就介绍到这，你要是有点编程能力或者头脑，应该差不多能搞定吧。
-</code></pre><blockquote>
-<p>对了 drawImage和clearRect都是基于canvas的<strong>绘图环境</strong>的：eg: var canvas = document.getElementById(“canvas”);  var context = canvas.getContext(“2d”);//基于context的</p>
-<p>还是附上代码吧：</p>
+<p>首先来看一段冗余的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">App.config([&apos;$stateProvider&apos;, &apos;$urlRouterProvider&apos;, &apos;$locationProvider&apos;, &apos;$httpProvider&apos;, function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) &#123;</span><br><span class="line">    $stateProvider</span><br><span class="line">    	.state(&apos;a&apos;&#123;</span><br><span class="line">    	 url:&quot;/a&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	.state(&apos;b&apos;&#123;</span><br><span class="line">    	 url:&quot;/b&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	.state(&apos;c&apos;&#123;</span><br><span class="line">    	 url:&quot;/c&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	.state(&apos;d&apos;&#123;</span><br><span class="line">    	 url:&quot;/d&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	//此处省略n个状态</span><br><span class="line">    	//此处省略n+1个状态</span><br><span class="line">    	//此处省略n+2个状态</span><br><span class="line">    	// . . .</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p>看着太糙了有没有？ 一点B格都没有还怎么愉快的玩耍？！</p>
+<blockquote>
+<p>重新再看段代码：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;My Canvas&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;</span><br><span class="line">.mycanvas&#123;</span><br><span class="line">display: block;</span><br><span class="line">margin: 0 auto ;</span><br><span class="line"> border:1px solid #aaa;</span><br><span class="line"> cursor: pointer;</span><br><span class="line"> &#125;</span><br><span class="line"> .box&#123;</span><br><span class="line"> position: absolute;</span><br><span class="line"> top:600px;</span><br><span class="line"> left: 50%;</span><br><span class="line"> &#125;</span><br><span class="line"> &lt;/style&gt;</span><br><span class="line"> &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"> window.onload = function()&#123;</span><br><span class="line"> var canvas = document.getElementById(&apos;canvas&apos;);</span><br><span class="line"> var context = canvas.getContext(&quot;2d&quot;);</span><br><span class="line"> var image = new Image();</span><br><span class="line"> image.src = &quot;img.png&quot;;</span><br><span class="line"> canvas.width = 500;</span><br><span class="line"> canvas.height = 500;</span><br><span class="line"> image.onload = function()&#123;</span><br><span class="line"> context.drawImage(image,0,0,canvas.width,canvas.height);</span><br><span class="line"> // canvas.addEventListener(&apos;mouseover&apos;,getImageHandler,false);</span><br><span class="line"> canvas.addEventListener(&apos;mousemove&apos;,getImageHandler,false);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> function getImageHandler(e)&#123;</span><br><span class="line"> var x = e.clientX;</span><br><span class="line"> var y = e.clientY;</span><br><span class="line"> console.log(&quot;x:&quot;+x+&quot; y:&quot;+y);</span><br><span class="line"> var box = document.getElementById(&quot;box&quot;);</span><br><span class="line"> var boxcontext = box.getContext(&quot;2d&quot;);</span><br><span class="line"> boxcontext.width =200;</span><br><span class="line"> boxcontext.height = 200;</span><br><span class="line"> var image = new Image();</span><br><span class="line"> image.src = &quot;img.png&quot;;</span><br><span class="line"> boxcontext.clearRect(0,0,0,0);</span><br><span class="line"> boxcontext.drawImage(image,x-e.target.offsetLeft,y-e.target.offsetTop,100,100,0,0,200,200);</span><br><span class="line"> &#125;</span><br><span class="line"> &lt;/script&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line"> &lt;canvas id=&quot;canvas&quot; class=&quot;mycanvas&quot;&gt;</span><br><span class="line"> &lt;/canvas&gt;</span><br><span class="line"> &lt;canvas id=&quot;box&quot; class=&quot;box&quot;&gt;</span><br><span class="line"> &lt;/canvas&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line"> &lt;/html&gt;</span><br></pre></td></tr></table></figure></the>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">App.config([&apos;$stateProvider&apos;, &apos;$urlRouterProvider&apos;, &apos;$locationProvider&apos;, &apos;$httpProvider&apos;, function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) &#123;</span><br><span class="line">	var stateArray = [&#123;</span><br><span class="line">		state:&apos;a&apos;,</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		state:&apos;b&apos;,</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		state:&apos;c&apos;,</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		state:&apos;d&apos;,</span><br><span class="line">	&#125;,]</span><br><span class="line">	angular.each(stateArray,function(obj)&#123;</span><br><span class="line">		.state(obj.state , &#123;</span><br><span class="line">			url:obj.state,</span><br><span class="line">			templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当然我只是举个栗子，让大家的思维拓展一下，至于如何去发散，那就要看你对路由的要求是什么了。可以构造自己的<code>stateArray</code>来实现不同的需求，比如说在路由上加下参数什么的~</p>
+</blockquote>
+
       
     </div>
     
@@ -330,13 +316,13 @@ Canvas绘图环境">
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/12/01/Canvas画布的一些实用技巧/">Canvas画布的一些实用技巧</a></p>
+        <p><span>本文标题:</span><a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/">AngularJs $stateProvider用循环实现路由创建并且参数化</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
-        <p><span>发布时间:</span>2015-12-01, 18:46:03</p>
-        <p><span>最后更新:</span>2016-05-21, 10:17:05</p>
+        <p><span>发布时间:</span>2016-05-26, 11:02:47</p>
+        <p><span>最后更新:</span>2016-05-26, 11:23:53</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/12/01/Canvas画布的一些实用技巧/" title="Canvas画布的一些实用技巧">http://CodingJoker.github.io/2015/12/01/Canvas画布的一些实用技巧/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2015/12/01/Canvas画布的一些实用技巧/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" title="AngularJs $stateProvider用循环实现路由创建并且参数化">http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -348,16 +334,10 @@ Canvas绘图环境">
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/">
-                    微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/">
-                    使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）
+                <a href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/">
+                    AngularJs ui-router controller加载两次的问题
                 </a>
             </div>
         
@@ -425,7 +405,7 @@ Canvas绘图环境">
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Canvas画布的一些实用技巧　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"AngularJs $stateProvider用循环实现路由创建并且参数化　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -441,7 +421,7 @@ Canvas绘图环境">
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/12/01/Canvas画布的一些实用技巧/" data-title="Canvas画布的一些实用技巧" data-url="http://CodingJoker.github.io/2015/12/01/Canvas画布的一些实用技巧/"></div>
+    <div class="ds-thread" data-thread-key="2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" data-title="AngularJs $stateProvider用循环实现路由创建并且参数化" data-url="http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -465,15 +445,13 @@ Canvas绘图环境">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/" title="上一篇: 微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/" title="下一篇: 使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）">
+            <a href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/" title="下一篇: AngularJs ui-router controller加载两次的问题">
                 <i class="fa fa-angle-right"></i>
             </a>
         
