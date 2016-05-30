@@ -3,27 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>一道关于Promise应用题 | JumorZhu&#39;s Labs</title>
+  <title>MVC , MVP ,MVVM的区别和联系 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？
-用Promse实现,三个亮灯函数已经存在：
-
-123456789function red()&amp;#123;    console.log(&amp;apos;red&amp;apos;);&amp;#125;function green()&amp;#123;    console.log(&amp;apos;green&amp;apos;);&amp;#125;f">
+  <meta name="description" content="MVC , MVP , MVVM如何过渡">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一道关于Promise应用题">
-<meta property="og:url" content="http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/index.html">
+<meta property="og:title" content="MVC , MVP ,MVVM的区别和联系">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/05/30/MVC-MVP-MVVM的区别和联系/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？
-用Promse实现,三个亮灯函数已经存在：
-
-123456789function red()&amp;#123;    console.log(&amp;apos;red&amp;apos;);&amp;#125;function green()&amp;#123;    console.log(&amp;apos;green&amp;apos;);&amp;#125;f">
-<meta property="og:updated_time" content="2016-05-30T00:39:23.217Z">
+<meta property="og:description" content="MVC , MVP , MVVM如何过渡">
+<meta property="og:image" content="https://app.yinxiang.com/shard/s38/res/4718e3ce-e7a7-45f2-97af-f5b7fde91404.png">
+<meta property="og:updated_time" content="2016-05-30T04:54:11.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一道关于Promise应用题">
-<meta name="twitter:description" content="题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？
-用Promse实现,三个亮灯函数已经存在：
-
-123456789function red()&amp;#123;    console.log(&amp;apos;red&amp;apos;);&amp;#125;function green()&amp;#123;    console.log(&amp;apos;green&amp;apos;);&amp;#125;f">
+<meta name="twitter:title" content="MVC , MVP ,MVVM的区别和联系">
+<meta name="twitter:description" content="MVC , MVP , MVVM如何过渡">
+<meta name="twitter:image" content="https://app.yinxiang.com/shard/s38/res/4718e3ce-e7a7-45f2-97af-f5b7fde91404.png">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -250,11 +243,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-一道关于Promise应用题" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-MVC-MVP-MVVM的区别和联系" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/23/一道关于Promise应用题/" class="article-date">
-      <time datetime="2016-05-23T01:05:53.000Z" itemprop="datePublished">2016-05-23</time>
+      <a href="/2016/05/30/MVC-MVP-MVVM的区别和联系/" class="article-date">
+      <time datetime="2016-05-30T03:47:04.000Z" itemprop="datePublished">2016-05-30</time>
 </a>
     </div>
   
@@ -267,7 +260,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      一道关于Promise应用题
+      MVC , MVP ,MVVM的区别和联系
     </h1>
   
 
@@ -294,37 +287,46 @@
           
         <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
 <ul>
-<li><code>题目</code>：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯<code>不断交替</code>重复亮灯？</li>
-<li>用Promse实现,三个亮灯函数已经存在：</li>
+<li>MVC , MVP , MVVM如何过渡</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function red()&#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function green()&#123;</span><br><span class="line">    console.log(&apos;green&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function yellow()&#123;</span><br><span class="line">    console.log(&apos;yellow&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<blockquote>
-<p>这道题首先考察Promise的应用，首先我们需要一个函数来实现时间控制：</p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p><b>应好友之邀写一篇这三者的关系的文章，以下也纯属个人见解，不足之处请大家指出。</b></p>
+<h2 id="MVC-MVP-MVVM的区别和联系"><a href="#MVC-MVP-MVVM的区别和联系" class="headerlink" title="MVC,MVP,MVVM的区别和联系"></a>MVC,MVP,MVVM的区别和联系</h2><blockquote>
+<p>先说一下三者的<code>共同点</code></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var tic = function(timmer, cb)&#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            cb();</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, timmer);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果把问题简化一下，如果只需要一个周期，那么利用Promise应该这样写：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    def.then(function()&#123;</span><br><span class="line">        return tic(3000, red);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(2000, green);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(1000, yellow);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>现在一个周期已经有了，剩下的问题是如何让他无限循环。说道循环很容易想到for while do-while这三个，比如：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    while(true) &#123;</span><br><span class="line">        def.then(function()&#123;</span><br><span class="line">            return tic(3000, red);</span><br><span class="line">        &#125;).then(function()&#123;</span><br><span class="line">            return tic(2000, green);</span><br><span class="line">        &#125;).then(function()&#123;</span><br><span class="line">            return tic(1000, yellow);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>如果你是这样想的，那么恭喜你成功踩了坑！这道题的第二个考查点就是setTimeout相关的异步队列会挂起知道主进程空闲。如果使用while无限循环，主进程永远不会空闲，setTimeout的函数永远不会执行！
+<pre><code>也就是Model和ViewModel就是数据模型，同时，提供外部对应用程序数据的操作的接口，也可能在数据变化时发出变更通知。Model不依赖于View的实现，只要外部程序调用Model的接口就能够实现对数据的增删改查。
+View就是UI层，提供对最终用户的交互操作功能，包括UI展现代码及一些相关的界面逻辑代码。
 </code></pre><blockquote>
-<p>正确的解决方法就是这道题的第三个考查点——<code>递归</code>！！！解决方案如下：</p>
+<p>三者的差异在于如何<code>粘合</code>View和Model，实现用户的交互操作以及变更通知<br>MVC,MVP,MVVM图示：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    def.then(function()&#123;</span><br><span class="line">        return tic(3000, red);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(2000, green);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(1000, yellow);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        step(def);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div style="text-align: center"><br>    <img src="https://app.yinxiang.com/shard/s38/res/4718e3ce-e7a7-45f2-97af-f5b7fde91404.png" alt="MVC,MVP,MVVM图示"><br></div>
+
+
+
+<h2 id="MVC和MVP的关系"><a href="#MVC和MVP的关系" class="headerlink" title="MVC和MVP的关系"></a>MVC和MVP的关系</h2><blockquote>
+<p>MVC 进化为 MVP（Model-View-esenter）模式与WPF结合的应用方式时发展演变过来的一种新型架构框架</p>
+</blockquote>
+<pre><code>我们都知道MVP是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数 据，View负责显示。作为一种新的模式，MVP与MVC有着一个重大的区别：在MVP中View并不直接使用Model，它们之间的通信是通过 Presenter (MVC中的Controller)来进行的，所有的交互都发生在Presenter内部，而在MVC中View会以观察者的身份监听Model的变化，直接从Model中读取数据而不是通过 Controller。
+</code></pre><h2 id="MVVM和MVP的关系"><a href="#MVVM和MVP的关系" class="headerlink" title="MVVM和MVP的关系"></a>MVVM和MVP的关系</h2><pre><code>而 MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一致。 唯一的区别是，它采用双向绑定（data-binding）：（View的Model就是包含View的一些数据属性和操作的这么一个东东）这种模式的关键技术就是数据绑定（data binding），View的变化会直接影响ViewModel，ViewModel的变化或者内容也会直接体现在View上。这种模式实际上是框架替应用开发者做了一些工作，开发者只需要较少的代码就能实现比较复杂的交互。
+</code></pre><h2 id="MVVM的优点"><a href="#MVVM的优点" class="headerlink" title="MVVM的优点"></a>MVVM的优点</h2><ol>
+<li>低耦合：View可以独立于Model变化和修改，同一个ViewModel可以被多个View复用；并且可以做到View和Model的变化互不影响；</li>
+<li>可重用性：可以把一些视图的逻辑放在ViewModel，让多个View复用；</li>
+<li>独立开发：开发人员可以专注与业务逻辑和数据的开发（ViewModel），界面设计人员可以专注于UI(View)的设计；</li>
+<li>可测试性：清晰的View分层，使得针对表现层业务逻辑的测试更容易，更简单。</li>
+</ol>
 <blockquote>
-<p>整体代码如下：</p>
+<p>在angular中MVVM模式主要分为<code>四部分</code>：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function red()&#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function green()&#123;</span><br><span class="line">    console.log(&apos;green&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function yellow()&#123;</span><br><span class="line">    console.log(&apos;yellow&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var tic = function(timmer, cb)&#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            cb();</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, timmer);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    def.then(function()&#123;</span><br><span class="line">        return tic(3000, red);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(2000, green);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(1000, yellow);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        step(def);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">step(d);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>同时可以看到虽然Promise可以用来解决<code>回调地狱</code>问题，但是仍然不可避免的会有回调出现，更好的解决方案是利用<code>Generator</code>来减少回调:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var tic = function(timmer, str)&#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(str);</span><br><span class="line">            resolve(1);</span><br><span class="line">        &#125;, timmer);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function *gen()&#123;</span><br><span class="line">    yield tic(3000, &apos;red&apos;);</span><br><span class="line">    yield tic(1000, &apos;green&apos;);</span><br><span class="line">    yield tic(2000, &apos;yellow&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var iterator = gen();</span><br><span class="line">var step = function(gen, iterator)&#123;</span><br><span class="line">    var s = iterator.next();</span><br><span class="line">    if (s.done) &#123;</span><br><span class="line">        step(gen, gen());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        s.value.then(function() &#123;</span><br><span class="line">            step(gen, iterator);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">step(gen, iterator);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>View：它专注于界面的显示和渲染，在angular中则是包含一堆声明式<code>Directive</code>的视图模板。</li>
+<li>ViewModel：它是View和Model的粘合体，负责View和Model的交互和协作，它负责给View提供显示的数据，以及提供了View中Command事件操作Model的途径；在angular中<code>$scope</code>对象充当了这个ViewModel的角色；</li>
+<li>Model：它是与应用程序的业务逻辑相关的数据的封装载体，它是业务领域的对象，Model并不关心会被如何显示或操作，所以模型也不会包含任何界面显示相关的逻辑。在web页面中，大部分Model都是来自Ajax的服务端返回数据或者是全局的配置对象；而angular中的<code>service</code>则是封装和处理这些与Model相关的业务逻辑的场所，这类的业务服务是可以被多个Controller或者其他service复用的领域服务。</li>
+<li>Controller：这并不是MVVM模式的核心元素，但它负责ViewModel对象的初始化，它将组合一个或者多个service来获取业务领域Model放在ViewModel对象上，使得应用界面在启动加载的时候达到一种可用的状态。</li>
+</ul>
+<p>﻿</p>
+</the>
       
     </div>
     
@@ -332,13 +334,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/23/一道关于Promise应用题/">一道关于Promise应用题</a></p>
+        <p><span>本文标题:</span><a href="/2016/05/30/MVC-MVP-MVVM的区别和联系/">MVC , MVP ,MVVM的区别和联系</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
-        <p><span>发布时间:</span>2016-05-23, 09:05:53</p>
-        <p><span>最后更新:</span>2016-05-30, 08:39:23</p>
+        <p><span>发布时间:</span>2016-05-30, 11:47:04</p>
+        <p><span>最后更新:</span>2016-05-30, 12:54:11</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/23/一道关于Promise应用题/" title="一道关于Promise应用题">http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/30/MVC-MVP-MVVM的区别和联系/" title="MVC , MVP ,MVVM的区别和联系">http://CodingJoker.github.io/2016/05/30/MVC-MVP-MVVM的区别和联系/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/05/30/MVC-MVP-MVVM的区别和联系/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -350,16 +352,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/">
-                    AngularJs $stateProvider用循环实现路由创建并且参数化
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/">
-                    AngularJs ui-router controller加载两次的问题
+                <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/">
+                    AngularJs $stateProvider用循环实现路由创建并且参数化
                 </a>
             </div>
         
@@ -370,7 +366,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-MVP-MVVM的区别和联系"><span class="toc-number">1.</span> <span class="toc-text">MVC,MVP,MVVM的区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC和MVP的关系"><span class="toc-number">2.</span> <span class="toc-text">MVC和MVP的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM和MVP的关系"><span class="toc-number">3.</span> <span class="toc-text">MVVM和MVP的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM的优点"><span class="toc-number">4.</span> <span class="toc-text">MVVM的优点</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -427,7 +423,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"一道关于Promise应用题　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"MVC , MVP ,MVVM的区别和联系　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -443,7 +439,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/05/23/一道关于Promise应用题/" data-title="一道关于Promise应用题" data-url="http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/"></div>
+    <div class="ds-thread" data-thread-key="2016/05/30/MVC-MVP-MVVM的区别和联系/" data-title="MVC , MVP ,MVVM的区别和联系" data-url="http://CodingJoker.github.io/2016/05/30/MVC-MVP-MVVM的区别和联系/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -467,15 +463,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" title="上一篇: AngularJs $stateProvider用循环实现路由创建并且参数化">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/" title="下一篇: AngularJs ui-router controller加载两次的问题">
+            <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" title="下一篇: AngularJs $stateProvider用循环实现路由创建并且参数化">
                 <i class="fa fa-angle-right"></i>
             </a>
         
