@@ -3,21 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>js关于静态快照（snapshot）的问题 | JumorZhu&#39;s Labs</title>
+  <title>一道关于Promise应用题 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Snapshot
-Javascript闭包">
+  <meta name="description" content="题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？
+用Promse实现,三个亮灯函数已经存在：
+
+123456789function red()&amp;#123;    console.log(&amp;apos;red&amp;apos;);&amp;#125;function green()&amp;#123;    console.log(&amp;apos;green&amp;apos;);&amp;#125;f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js关于静态快照（snapshot）的问题">
-<meta property="og:url" content="http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/index.html">
+<meta property="og:title" content="一道关于Promise应用题">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="Snapshot
-Javascript闭包">
-<meta property="og:updated_time" content="2016-05-21T02:17:05.000Z">
+<meta property="og:description" content="题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？
+用Promse实现,三个亮灯函数已经存在：
+
+123456789function red()&amp;#123;    console.log(&amp;apos;red&amp;apos;);&amp;#125;function green()&amp;#123;    console.log(&amp;apos;green&amp;apos;);&amp;#125;f">
+<meta property="og:updated_time" content="2016-05-30T00:39:23.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js关于静态快照（snapshot）的问题">
-<meta name="twitter:description" content="Snapshot
-Javascript闭包">
+<meta name="twitter:title" content="一道关于Promise应用题">
+<meta name="twitter:description" content="题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？
+用Promse实现,三个亮灯函数已经存在：
+
+123456789function red()&amp;#123;    console.log(&amp;apos;red&amp;apos;);&amp;#125;function green()&amp;#123;    console.log(&amp;apos;green&amp;apos;);&amp;#125;f">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -244,11 +250,11 @@ Javascript闭包">
     </div>
     <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
 </nav>
-      <div class="body-wrap"><article id="post-js关于静态快照（snapshot）的问题" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-一道关于Promise应用题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/25/js关于静态快照（snapshot）的问题/" class="article-date">
-      <time datetime="2015-12-25T07:02:34.000Z" itemprop="datePublished">2015-12-25</time>
+      <a href="/2016/05/23/一道关于Promise应用题/" class="article-date">
+      <time datetime="2016-05-23T01:05:53.000Z" itemprop="datePublished">2016-05-23</time>
 </a>
     </div>
   
@@ -261,7 +267,7 @@ Javascript闭包">
         
   
     <h1 class="article-title" itemprop="name">
-      js关于静态快照（snapshot）的问题
+      一道关于Promise应用题
     </h1>
   
 
@@ -270,13 +276,13 @@ Javascript闭包">
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/大犀牛JavaScript/">大犀牛JavaScript</a>
+    <a class="article-category-link" href="/categories/前端小记/">前端小记</a><a class="article-category-link" href="/categories/前端小记/大犀牛JavaScript/">大犀牛JavaScript</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -288,32 +294,37 @@ Javascript闭包">
           
         <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
 <ul>
-<li>Snapshot</li>
-<li>Javascript闭包</li>
+<li><code>题目</code>：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯<code>不断交替</code>重复亮灯？</li>
+<li>用Promse实现,三个亮灯函数已经存在：</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function red()&#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function green()&#123;</span><br><span class="line">    console.log(&apos;green&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function yellow()&#123;</span><br><span class="line">    console.log(&apos;yellow&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<the rest="" of="" contents="" |="" 余下全文="">
-
-
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
 <blockquote>
-<p>有这么一个情景，JS代码 如下：</p>
+<p>这道题首先考察Promise的应用，首先我们需要一个函数来实现时间控制：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  var map = [&apos;Mr&apos; : &apos;Mr&apos; , &apos;Ms&apos; : &apos;Ms&apos;];//可能有很多个</span><br><span class="line">  var hello = [];</span><br><span class="line">  function say(call , name)&#123;</span><br><span class="line">      console.log(call + &quot; : &quot; +  name );</span><br><span class="line">  &#125; </span><br><span class="line">  //补全代码</span><br><span class="line">  bababa~~~~</span><br><span class="line">  //补全代码</span><br><span class="line">  hello.Mr(&apos;JuMorZhu&apos;) // 控制台输出 Mr ： JuMorZhu</span><br><span class="line">  hello.Ms(&apos;Fan BingBing&apos;) // 控制台 Ms : Fan BingBing</span><br><span class="line">  一开始我想到的是这样：</span><br><span class="line"></span><br><span class="line">for( var x  in map)&#123;</span><br><span class="line"></span><br><span class="line">  hello[x] = function(name)&#123;</span><br><span class="line"></span><br><span class="line">               say(map[x],name)</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>感觉挺简单的，自己还在得意中的时候控制台给我来了一波冷水。。。(+﹏+)~，输出的都是Ms ： Fan BingBing，我擦，你是有多喜欢范冰冰！！！
-
-原因是这样的，有没有听过这么一个名词： **静态快照，**是这样的，当你在执行这段代码的时候，Js首先进入预编译阶段，因为你创建函数的时候没有立即执行，所以JS在预编译的时候就会引用这个变量而不是这个变量的值，当你的函数执行的时候才会去找这个变量，在它找这个变量的时候他找不到，就会返回上一层作用域去找这个变量，而这时这个变量是map[x]，而x现在是map数组的最后一个索引，也就是Ms，所以此时无论你hello中有多少个元素，都只有一种输出结果，也就是在这种情况下创建的函数不支持静态快照。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var tic = function(timmer, cb)&#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            cb();</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, timmer);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果把问题简化一下，如果只需要一个周期，那么利用Promise应该这样写：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    def.then(function()&#123;</span><br><span class="line">        return tic(3000, red);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(2000, green);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(1000, yellow);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>现在一个周期已经有了，剩下的问题是如何让他无限循环。说道循环很容易想到for while do-while这三个，比如：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    while(true) &#123;</span><br><span class="line">        def.then(function()&#123;</span><br><span class="line">            return tic(3000, red);</span><br><span class="line">        &#125;).then(function()&#123;</span><br><span class="line">            return tic(2000, green);</span><br><span class="line">        &#125;).then(function()&#123;</span><br><span class="line">            return tic(1000, yellow);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>如果你是这样想的，那么恭喜你成功踩了坑！这道题的第二个考查点就是setTimeout相关的异步队列会挂起知道主进程空闲。如果使用while无限循环，主进程永远不会空闲，setTimeout的函数永远不会执行！
 </code></pre><blockquote>
-<p>所以你需要换个思路了~</p>
+<p>正确的解决方法就是这道题的第三个考查点——<code>递归</code>！！！解决方案如下：</p>
 </blockquote>
-<pre><code>如果说函数执行的时候才去找变量，那么我们问什么不把它运行下呢，这时候我们用到了闭包。
-
-再来看看用闭包写的代码：
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for（var x in map）&#123;</span><br><span class="line"></span><br><span class="line">  hello[x] = (function( call )&#123;</span><br><span class="line"></span><br><span class="line">    say(call,name)</span><br><span class="line"></span><br><span class="line">&#125;)( map[x] )</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    def.then(function()&#123;</span><br><span class="line">        return tic(3000, red);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(2000, green);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(1000, yellow);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        step(def);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>你再试试，怎么样？感受到闭包的强大了吧~</p>
+<p>整体代码如下：</p>
 </blockquote>
-<p>&nbsp;</p>
-</the>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function red()&#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function green()&#123;</span><br><span class="line">    console.log(&apos;green&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function yellow()&#123;</span><br><span class="line">    console.log(&apos;yellow&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var tic = function(timmer, cb)&#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            cb();</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, timmer);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var d = new Promise(function(resolve, reject)&#123;resolve();&#125;);</span><br><span class="line">var step = function(def) &#123;</span><br><span class="line">    def.then(function()&#123;</span><br><span class="line">        return tic(3000, red);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(2000, green);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        return tic(1000, yellow);</span><br><span class="line">    &#125;).then(function()&#123;</span><br><span class="line">        step(def);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">step(d);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>同时可以看到虽然Promise可以用来解决<code>回调地狱</code>问题，但是仍然不可避免的会有回调出现，更好的解决方案是利用<code>Generator</code>来减少回调:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var tic = function(timmer, str)&#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(str);</span><br><span class="line">            resolve(1);</span><br><span class="line">        &#125;, timmer);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function *gen()&#123;</span><br><span class="line">    yield tic(3000, &apos;red&apos;);</span><br><span class="line">    yield tic(1000, &apos;green&apos;);</span><br><span class="line">    yield tic(2000, &apos;yellow&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var iterator = gen();</span><br><span class="line">var step = function(gen, iterator)&#123;</span><br><span class="line">    var s = iterator.next();</span><br><span class="line">    if (s.done) &#123;</span><br><span class="line">        step(gen, gen());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        s.value.then(function() &#123;</span><br><span class="line">            step(gen, iterator);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">step(gen, iterator);</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -321,13 +332,13 @@ Javascript闭包">
   
     
     <div class="copyright">
-        <p><span>本文標題:</span><a href="/2015/12/25/js关于静态快照（snapshot）的问题/">js关于静态快照（snapshot）的问题</a></p>
+        <p><span>本文標題:</span><a href="/2016/05/23/一道关于Promise应用题/">一道关于Promise应用题</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主頁">JumorZhu</a></p>
-        <p><span>發布時間:</span>2015-12-25, 15:02:34</p>
-        <p><span>最後更新:</span>2016-05-21, 10:17:05</p>
+        <p><span>發布時間:</span>2016-05-23, 09:05:53</p>
+        <p><span>最後更新:</span>2016-05-30, 08:39:23</p>
         <p>
-            <span>原始鏈接:</span><a class="post-url" href="/2015/12/25/js关于静态快照（snapshot）的问题/" title="js关于静态快照（snapshot）的问题">http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/　　作者: JumorZhu" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
+            <span>原始鏈接:</span><a class="post-url" href="/2016/05/23/一道关于Promise应用题/" title="一道关于Promise应用题">http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/　　作者: JumorZhu" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -340,15 +351,15 @@ Javascript闭包">
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/01/06/咱得按规矩来-致《老炮儿》/">
-                    咱得按规矩来----致《老炮儿》
+                <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/">
+                    AngularJs $stateProvider用循环实现路由创建并且参数化
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/12/24/拿什么拯救你的激情，我的同胞/">
-                    拿什么拯救你的激情，我的同胞
+                <a href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/">
+                    AngularJs ui-router controller加载两次的问题
                 </a>
             </div>
         
@@ -416,7 +427,7 @@ Javascript闭包">
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"js关于静态快照（snapshot）的问题　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"一道关于Promise应用题　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -432,7 +443,7 @@ Javascript闭包">
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/12/25/js关于静态快照（snapshot）的问题/" data-title="js关于静态快照（snapshot）的问题" data-url="http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/"></div>
+    <div class="ds-thread" data-thread-key="2016/05/23/一道关于Promise应用题/" data-title="一道关于Promise应用题" data-url="http://CodingJoker.github.io/2016/05/23/一道关于Promise应用题/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -456,7 +467,7 @@ Javascript闭包">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/01/06/咱得按规矩来-致《老炮儿》/" title="上一篇: 咱得按规矩来----致《老炮儿》">
+            <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" title="上一篇: AngularJs $stateProvider用循环实现路由创建并且参数化">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -464,7 +475,7 @@ Javascript闭包">
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/12/24/拿什么拯救你的激情，我的同胞/" title="下一篇: 拿什么拯救你的激情，我的同胞">
+            <a href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/" title="下一篇: AngularJs ui-router controller加载两次的问题">
                 <i class="fa fa-angle-right"></i>
             </a>
         
