@@ -69,8 +69,8 @@ theme: yelee
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: http://github.com/CodingJoker/CodingJoker.github.io.git
-  branch: mac
+  repository: git@github.com:CodingJoker/CodingJoker.github.io.git
+  branch: master
 
 
 duoshuo_shortname: https://CodingJoker.github.io/
