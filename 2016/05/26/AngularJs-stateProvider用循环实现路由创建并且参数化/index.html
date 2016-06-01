@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>canvas实现图片尺寸等比压缩并转换为base64字符串 | JumorZhu&#39;s Labs</title>
+  <title>AngularJs $stateProvider用循环实现路由创建并且参数化 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Canvas妙用
-Canvas.toDataURL">
+  <meta name="description" content="angularJs循环创建路由
+使用ui-router实现路由嵌套">
 <meta property="og:type" content="article">
-<meta property="og:title" content="canvas实现图片尺寸等比压缩并转换为base64字符串">
-<meta property="og:url" content="http://CodingJoker.github.io/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/index.html">
+<meta property="og:title" content="AngularJs $stateProvider用循环实现路由创建并且参数化">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="Canvas妙用
-Canvas.toDataURL">
-<meta property="og:updated_time" content="2016-05-21T02:17:05.000Z">
+<meta property="og:description" content="angularJs循环创建路由
+使用ui-router实现路由嵌套">
+<meta property="og:updated_time" content="2016-06-01T01:46:29.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="canvas实现图片尺寸等比压缩并转换为base64字符串">
-<meta name="twitter:description" content="Canvas妙用
-Canvas.toDataURL">
+<meta name="twitter:title" content="AngularJs $stateProvider用循环实现路由创建并且参数化">
+<meta name="twitter:description" content="angularJs循环创建路由
+使用ui-router实现路由嵌套">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -244,11 +244,11 @@ Canvas.toDataURL">
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-canvas实现图片尺寸等比压缩并转换为base64字符串" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-AngularJs-stateProvider用循环实现路由创建并且参数化" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/" class="article-date">
-      <time datetime="2016-03-27T01:54:01.000Z" itemprop="datePublished">2016-03-27</time>
+      <a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" class="article-date">
+      <time datetime="2016-05-26T03:02:47.000Z" itemprop="datePublished">2016-05-26</time>
 </a>
     </div>
   
@@ -261,7 +261,7 @@ Canvas.toDataURL">
         
   
     <h1 class="article-title" itemprop="name">
-      canvas实现图片尺寸等比压缩并转换为base64字符串
+      AngularJs $stateProvider用循环实现路由创建并且参数化
     </h1>
   
 
@@ -270,11 +270,15 @@ Canvas.toDataURL">
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/前端小记/">前端小记</a>
+    <a class="article-category-link" href="/categories/angularJs/">angularJs</a><a class="article-category-link" href="/categories/angularJs/前端小记/">前端小记</a>
     </div>
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -284,29 +288,27 @@ Canvas.toDataURL">
           
         <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
 <ul>
-<li>Canvas妙用</li>
-<li>Canvas.toDataURL</li>
-</ul>
-<a id="more"></a>
+<li>angularJs循环创建路由</li>
+<li>使用ui-router实现路由嵌套<a id="more"></a>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<pre><code>最近公司的一个H5活动，搜狐新闻客户端开机图制作，需要用户上传一张图片之后，先显示出来再进行裁剪，然后上传**base64字符串**到服务器上。
-
-但是问题来了，用户一般上传的图片文件的大小都在3-5M左右，转成base64后提交给服务器的话实在是太大了，到时上传到服务器的时候服务器超时了（都是泪啊！），所以这里需要先压缩下图片。
-
-偶然间想起来可以用canvas进行图片压缩，因为这个H5只是在客户端的webview中的，而webview又是webkit内核，所以对canvas的支持自然是比较好的，我们就毫无疑问的选择了用canvas进行压缩。
-</code></pre><blockquote>
-<p>先上代码吧：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var width = img_this.width,height = img_this.height;</span><br><span class="line">var **scale** = width / height;</span><br><span class="line">width1 = 720;</span><br><span class="line">height1 = parseInt(width1 / scale);</span><br><span class="line">var canvas = $(&quot;#cans&quot;);</span><br><span class="line">canvas[0].width = width1; canvas[0].height = height1;</span><br><span class="line">var ctx = canvas[0].getContext(&apos;2d&apos;);</span><br><span class="line">ctx.**drawImage**(img_this,0,0,width,height,0,0,width1,height1);</span><br><span class="line">  var cropStr = canvas[0].**toDataURL**(**&quot;image/jpeg&quot;,0.7**)</span><br></pre></td></tr></table></figure>
+</the></li>
+</ul>
+<p>设想一个场景：在项目开发的过程中，路由越来越多并且这些公用一套模板的时候，会导致路由管理起来太不方便，有点累赘的感觉。</p>
 <blockquote>
-<p>这里的img_this是一个img对象，首先我们先得到这个图片的宽高比，然后指定canvas的宽度为720，高度由之前的宽高比来定。这里指定了canvas的宽度为720后，将图片画在canvas里面后转成的base64的宽度也会为720。</p>
+<p>不过不要怕， GG这里有解决方案!</p>
 </blockquote>
-<pre><code>我们用drawImage方法将图片的**（0,0）坐标到(0 + width , 0+ height)坐标也就是整张图片** 画到 canvas**（0,0）到（width1，height1）也就是整个canvas内**。然后使用toDataUrl将图片转换成jpeg的格式，后面**0.7为图片的压缩质量，可以理解为压缩率**。**不要把图片压缩成png，因为压缩成png后base64的字符串可能比不转换前的长**！
-</code></pre><blockquote>
-<p>就这么简单的几步就实现了对图片的压缩，咋样，方便吧~</p>
+<p>首先来看一段冗余的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">App.config([&apos;$stateProvider&apos;, &apos;$urlRouterProvider&apos;, &apos;$locationProvider&apos;, &apos;$httpProvider&apos;, function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) &#123;</span><br><span class="line">    $stateProvider</span><br><span class="line">    	.state(&apos;a&apos;&#123;</span><br><span class="line">    	 url:&quot;/a&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	.state(&apos;b&apos;&#123;</span><br><span class="line">    	 url:&quot;/b&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	.state(&apos;c&apos;&#123;</span><br><span class="line">    	 url:&quot;/c&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	.state(&apos;d&apos;&#123;</span><br><span class="line">    	 url:&quot;/d&quot;,</span><br><span class="line">    	 templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">    	&#125;)</span><br><span class="line">    	//此处省略n个状态</span><br><span class="line">    	//此处省略n+1个状态</span><br><span class="line">    	//此处省略n+2个状态</span><br><span class="line">    	// . . .</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p>看着太糙了有没有？ 一点B格都没有还怎么愉快的玩耍？！</p>
+<blockquote>
+<p>重新再看段代码：</p>
 </blockquote>
-</the>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">App.config([&apos;$stateProvider&apos;, &apos;$urlRouterProvider&apos;, &apos;$locationProvider&apos;, &apos;$httpProvider&apos;, function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) &#123;</span><br><span class="line">	var stateArray = [&#123;</span><br><span class="line">		state:&apos;a&apos;,</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		state:&apos;b&apos;,</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		state:&apos;c&apos;,</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		state:&apos;d&apos;,</span><br><span class="line">	&#125;,]</span><br><span class="line">	angular.each(stateArray,function(obj)&#123;</span><br><span class="line">		.state(obj.state , &#123;</span><br><span class="line">			url:obj.state,</span><br><span class="line">			templateUrl:&apos;tpls/common.html&apos;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当然我只是举个栗子，让大家的思维拓展一下，至于如何去发散，那就要看你对路由的要求是什么了。可以构造自己的<code>stateArray</code>来实现不同的需求，比如说在路由上加下参数什么的~</p>
+</blockquote>
+
       
     </div>
     
@@ -314,13 +316,13 @@ Canvas.toDataURL">
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/">canvas实现图片尺寸等比压缩并转换为base64字符串</a></p>
+        <p><span>Title:</span><a href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/">AngularJs $stateProvider用循环实现路由创建并且参数化</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">JumorZhu</a></p>
-        <p><span>Created:</span>2016-03-27, 09:54:01</p>
-        <p><span>Updated:</span>2016-05-21, 10:17:05</p>
+        <p><span>Created:</span>2016-05-26, 11:02:47</p>
+        <p><span>Updated:</span>2016-06-01, 09:46:29</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/" title="canvas实现图片尺寸等比压缩并转换为base64字符串">http://CodingJoker.github.io/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/</a>
-            <span class="copy-path" data-clipboard-text="From http://CodingJoker.github.io/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/　　By JumorZhu" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" title="AngularJs $stateProvider用循环实现路由创建并且参数化">http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/</a>
+            <span class="copy-path" data-clipboard-text="From http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/　　By JumorZhu" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -333,15 +335,15 @@ Canvas.toDataURL">
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/">
-                    转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀
+                <a href="/2016/05/30/MVC-MVP-MVVM的区别和联系/">
+                    MVC , MVP ,MVVM的区别和联系
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/03/07/HTML5语义化/">
-                    HTML5语义化
+                <a href="/2016/05/23/一道关于Promise应用题/">
+                    一道关于Promise应用题
                 </a>
             </div>
         
@@ -409,7 +411,7 @@ Canvas.toDataURL">
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"canvas实现图片尺寸等比压缩并转换为base64字符串　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"AngularJs $stateProvider用循环实现路由创建并且参数化　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -425,7 +427,7 @@ Canvas.toDataURL">
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/" data-title="canvas实现图片尺寸等比压缩并转换为base64字符串" data-url="http://CodingJoker.github.io/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/"></div>
+    <div class="ds-thread" data-thread-key="2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/" data-title="AngularJs $stateProvider用循环实现路由创建并且参数化" data-url="http://CodingJoker.github.io/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -449,7 +451,7 @@ Canvas.toDataURL">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/" title="Pre: 转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀">
+            <a href="/2016/05/30/MVC-MVP-MVVM的区别和联系/" title="Pre: MVC , MVP ,MVVM的区别和联系">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -457,7 +459,7 @@ Canvas.toDataURL">
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/03/07/HTML5语义化/" title="Next: HTML5语义化">
+            <a href="/2016/05/23/一道关于Promise应用题/" title="Next: 一道关于Promise应用题">
                 <i class="fa fa-angle-right"></i>
             </a>
         
