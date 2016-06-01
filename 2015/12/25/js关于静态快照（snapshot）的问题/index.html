@@ -13,7 +13,7 @@ Javascript闭包">
 <meta property="og:site_name" content="JumorZhu's Labs">
 <meta property="og:description" content="Snapshot
 Javascript闭包">
-<meta property="og:updated_time" content="2016-06-01T01:25:17.861Z">
+<meta property="og:updated_time" content="2016-06-01T01:31:04.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js关于静态快照（snapshot）的问题">
 <meta name="twitter:description" content="Snapshot
@@ -93,7 +93,7 @@ Javascript闭包">
         <hgroup>
           <h1 class="header-author"><a href="/">JumorZhu</a></h1>
            <div class="total-word-count">
-              <span class="post-count">这货已写了 26.8k 个字了</span>
+              <span class="post-count">这货已写了 24.7k 个字了</span>
            </div>
         </hgroup>
 
@@ -127,11 +127,11 @@ Javascript闭包">
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -207,7 +207,7 @@ Javascript闭包">
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到主页">JumorZhu</a></h1>
               <div class="total-word-count">
-              <span class="post-count">这货已写了 26.8k 个字了</span>
+              <span class="post-count">这货已写了 24.7k 个字了</span>
               </div>
             </hgroup>
             
@@ -242,7 +242,7 @@ Javascript闭包">
             </nav>
         </header>
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap"><article id="post-js关于静态快照（snapshot）的问题" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -298,7 +298,7 @@ Javascript闭包">
 <blockquote>
 <p>有这么一个情景，JS代码 如下：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  var map = [&apos;Mr&apos; : &apos;Mr&apos; , &apos;Ms&apos; : &apos;Ms&apos;];//可能有很多个</span><br><span class="line">  var hello = [];</span><br><span class="line">  function say(call , name)&#123;</span><br><span class="line">      console.log(call + &quot; : &quot; +  name );</span><br><span class="line">  &#125; </span><br><span class="line">  //补全代码</span><br><span class="line">  bababa~~~~</span><br><span class="line">  //补全代码</span><br><span class="line">  hello.Mr(&apos;JuMorZhu&apos;) // 控制台输出 Mr ： JuMorZhu</span><br><span class="line">  hello.Ms(&apos;Fan BingBing&apos;) // 控制台 Ms : Fan BingBing</span><br><span class="line">  一开始我想到的是这样：</span><br><span class="line"></span><br><span class="line">for( var x  in map)&#123;</span><br><span class="line"></span><br><span class="line">  hello[x] = function(name)&#123;</span><br><span class="line"></span><br><span class="line">               say(map[x],name)</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  var map = [&apos;Mr&apos; : &apos;Mr&apos; , &apos;Ms&apos; : &apos;Ms&apos;];//可能有很多个.</span><br><span class="line">  var hello = [];</span><br><span class="line">  function say(call , name)&#123;</span><br><span class="line">      console.log(call + &quot; : &quot; +  name );</span><br><span class="line">  &#125; </span><br><span class="line">  //补全代码</span><br><span class="line">  bababa~~~~</span><br><span class="line">  //补全代码</span><br><span class="line">  hello.Mr(&apos;JuMorZhu&apos;) // 控制台输出 Mr ： JuMorZhu</span><br><span class="line">  hello.Ms(&apos;Fan BingBing&apos;) // 控制台 Ms : Fan BingBing</span><br><span class="line">  一开始我想到的是这样：</span><br><span class="line"></span><br><span class="line">for( var x  in map)&#123;</span><br><span class="line"></span><br><span class="line">  hello[x] = function(name)&#123;</span><br><span class="line"></span><br><span class="line">               say(map[x],name)</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <pre><code>感觉挺简单的，自己还在得意中的时候控制台给我来了一波冷水。。。(+﹏+)~，输出的都是Ms ： Fan BingBing，我擦，你是有多喜欢范冰冰！！！
 
 原因是这样的，有没有听过这么一个名词： **静态快照，**是这样的，当你在执行这段代码的时候，Js首先进入预编译阶段，因为你创建函数的时候没有立即执行，所以JS在预编译的时候就会引用这个变量而不是这个变量的值，当你的函数执行的时候才会去找这个变量，在它找这个变量的时候他找不到，就会返回上一层作用域去找这个变量，而这时这个变量是map[x]，而x现在是map数组的最后一个索引，也就是Ms，所以此时无论你hello中有多少个元素，都只有一种输出结果，也就是在这种情况下创建的函数不支持静态快照。
@@ -321,17 +321,17 @@ Javascript闭包">
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/12/25/js关于静态快照（snapshot）的问题/">js关于静态快照（snapshot）的问题</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
-        <p><span>发布时间:</span>2015-12-25, 15:02:34</p>
-        <p><span>最后更新:</span>2016-06-01, 09:25:17</p>
+        <p><span>Title:</span><a href="/2015/12/25/js关于静态快照（snapshot）的问题/">js关于静态快照（snapshot）的问题</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">JumorZhu</a></p>
+        <p><span>Created:</span>2015-12-25, 15:02:34</p>
+        <p><span>Updated:</span>2016-06-01, 09:31:04</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/12/25/js关于静态快照（snapshot）的问题/" title="js关于静态快照（snapshot）的问题">http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2015/12/25/js关于静态快照（snapshot）的问题/" title="js关于静态快照（snapshot）的问题">http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/</a>
+            <span class="copy-path" data-clipboard-text="From http://CodingJoker.github.io/2015/12/25/js关于静态快照（snapshot）的问题/　　By JumorZhu" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
     </div>
 
@@ -358,7 +358,7 @@ Javascript闭包">
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
+    <strong class="toc-title">Contents</strong>
     
 </div>
 <style>
@@ -370,10 +370,10 @@ Javascript闭包">
     }
 </style>
 
-<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
 <script>
-    var valueHide = "隐藏目录";
-    var valueShow = "显示目录";
+    var valueHide = "Hide";
+    var valueShow = "Show";
 
     if ($(".left-col").is(":hidden")) {
         $("#tocButton").attr("value", valueShow);
@@ -456,21 +456,21 @@ Javascript闭包">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/01/06/咱得按规矩来-致《老炮儿》/" title="上一篇: 咱得按规矩来----致《老炮儿》">
+            <a href="/2016/01/06/咱得按规矩来-致《老炮儿》/" title="Pre: 咱得按规矩来----致《老炮儿》">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/12/24/拿什么拯救你的激情，我的同胞/" title="下一篇: 拿什么拯救你的激情，我的同胞">
+            <a href="/2015/12/24/拿什么拯救你的激情，我的同胞/" title="Next: 拿什么拯救你的激情，我的同胞">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/30/MVC-MVP-MVVM的区别和联系/">MVC , MVP ,MVVM的区别和联系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/AngularJs-stateProvider用循环实现路由创建并且参数化/">AngularJs $stateProvider用循环实现路由创建并且参数化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/23/一道关于Promise应用题/">一道关于Promise应用题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/">AngularJs ui-router controller加载两次的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/阿里巴巴2016春季招聘面试体会/">阿里巴巴2016春季招聘面试体会</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/15/腾讯OMG前端面试体会/">腾讯OMG前端面试体会</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/关于邮箱前端架构的一些思考（续一）-功能模块/">关于邮箱前端架构的一些思考（续一）--功能模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/关于邮箱前端架构的一些思考/">关于邮箱前端架构的一些思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/angularJS中的拦截器/">angularJS中的拦截器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/">转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/">canvas实现图片尺寸等比压缩并转换为base64字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/07/HTML5语义化/">HTML5语义化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/">实现一个简单的摄像功能（不带传输数据）代码片段</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/07/再见了，如风的少年/">再见了，如风的少年</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/咱得按规矩来-致《老炮儿》/">咱得按规矩来----致《老炮儿》</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/js关于静态快照（snapshot）的问题/">js关于静态快照（snapshot）的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/24/拿什么拯救你的激情，我的同胞/">拿什么拯救你的激情，我的同胞</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/grunt-contrib-connect-中间件middleware属性/">grunt-contrib-connect 中间件middleware属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/Js实现浏览器下标签页间切换触发的事件/">Js实现浏览器下标签页间切换触发的事件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/19/Js内各种宽度，干货哟/">Js内各种宽度，干货哟~</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/">微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Canvas画布的一些实用技巧/">Canvas画布的一些实用技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/">使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/22/这是一种热爱/">这是一种热爱</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/23/一道关于Promise应用题/">一道关于Promise应用题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/AngularJs-ui-router-controller加载两次的问题/">AngularJs ui-router controller加载两次的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/阿里巴巴2016春季招聘面试体会/">阿里巴巴2016春季招聘面试体会</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/15/腾讯OMG前端面试体会/">腾讯OMG前端面试体会</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/关于邮箱前端架构的一些思考（续一）-功能模块/">关于邮箱前端架构的一些思考（续一）--功能模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/关于邮箱前端架构的一些思考/">关于邮箱前端架构的一些思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/angularJS中的拦截器/">angularJS中的拦截器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/27/转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀/">转战gulp，实现前端静态资源的压缩，加MD5戳，替换引用，加CDN前缀</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/27/canvas实现图片尺寸等比压缩并转换为base64字符串/">canvas实现图片尺寸等比压缩并转换为base64字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/07/HTML5语义化/">HTML5语义化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/23/实现一个简单的摄像功能（不带传输数据）代码片段/">实现一个简单的摄像功能（不带传输数据）代码片段</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/07/再见了，如风的少年/">再见了，如风的少年</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/咱得按规矩来-致《老炮儿》/">咱得按规矩来----致《老炮儿》</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/js关于静态快照（snapshot）的问题/">js关于静态快照（snapshot）的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/24/拿什么拯救你的激情，我的同胞/">拿什么拯救你的激情，我的同胞</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/grunt-contrib-connect-中间件middleware属性/">grunt-contrib-connect 中间件middleware属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/Js实现浏览器下标签页间切换触发的事件/">Js实现浏览器下标签页间切换触发的事件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/19/Js内各种宽度，干货哟/">Js内各种宽度，干货哟~</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/09/微信Version小于6-0的内嵌浏览器返回时的bug和url中附带随机参数的理解/">微信Version小于6.0的内嵌浏览器返回时的bug和url中附带随机参数的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Canvas画布的一些实用技巧/">Canvas画布的一些实用技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/">使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/22/这是一种热爱/">这是一种热爱</a></li></ul>
 
 
 
@@ -487,14 +487,14 @@ Javascript闭包">
                 2015-2016 JumorZhu<i class="fa fa-heart animated infinite pulse"></i>
             </div>
            <!--  <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div> -->
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到访数:
+                        <span id="site-visit" >Site Visitors:
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -504,7 +504,7 @@ Javascript闭包">
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量:
+                        <span id="page-visit">Page Hits:
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -537,9 +537,9 @@ Javascript闭包">
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 
     <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
