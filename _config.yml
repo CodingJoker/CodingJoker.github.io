@@ -70,7 +70,7 @@ theme: yelee
 deploy:
   type: git
   repository: http://github.com/CodingJoker/CodingJoker.github.io.git
-  branch: master
+  branch: mac
 
 
 duoshuo_shortname: https://CodingJoker.github.io/
