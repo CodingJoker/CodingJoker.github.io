@@ -3,24 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>grunt-contrib-connect 中间件middleware属性 | JumorZhu&#39;s Labs</title>
+  <title>百度糯米面试体会 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Grunt 中间件的创建
-代码！代码！代码！">
+  <meta name="description" content="面试地点：百度科技园5号楼
+面试部门：百度糯米音乐事业部">
 <meta property="og:type" content="article">
-<meta property="og:title" content="grunt-contrib-connect 中间件middleware属性">
-<meta property="og:url" content="http://CodingJoker.github.io/2015/12/23/grunt-contrib-connect-中间件middleware属性/index.html">
+<meta property="og:title" content="百度糯米面试体会">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="Grunt 中间件的创建
-代码！代码！代码！">
-<meta property="og:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/12/QQ截图20151223165820.png">
-<meta property="og:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/12/QQ截图20151223165912.png">
-<meta property="og:updated_time" content="2016-05-21T02:17:05.000Z">
+<meta property="og:description" content="面试地点：百度科技园5号楼
+面试部门：百度糯米音乐事业部">
+<meta property="og:updated_time" content="2016-06-16T11:35:18.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="grunt-contrib-connect 中间件middleware属性">
-<meta name="twitter:description" content="Grunt 中间件的创建
-代码！代码！代码！">
-<meta name="twitter:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/12/QQ截图20151223165820.png">
+<meta name="twitter:title" content="百度糯米面试体会">
+<meta name="twitter:description" content="面试地点：百度科技园5号楼
+面试部门：百度糯米音乐事业部">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -247,11 +244,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-grunt-contrib-connect-中间件middleware属性" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-百度糯米面试体会" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/23/grunt-contrib-connect-中间件middleware属性/" class="article-date">
-      <time datetime="2015-12-23T09:20:58.000Z" itemprop="datePublished">2015-12-23</time>
+      <a href="/2016/06/16/百度糯米面试体会/" class="article-date">
+      <time datetime="2016-06-16T11:02:58.000Z" itemprop="datePublished">2016-06-16</time>
 </a>
     </div>
   
@@ -264,7 +261,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      grunt-contrib-connect 中间件middleware属性
+      百度糯米面试体会
     </h1>
   
 
@@ -272,10 +269,6 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Gulp-Grunt/">Gulp / Grunt</a>
-    </div>
-
 
         
         <div class="clearfix"></div>
@@ -287,28 +280,39 @@
           
         <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
 <ul>
-<li>Grunt 中间件的创建</li>
-<li>代码！代码！代码！</li>
+<li>面试地点：百度科技园5号楼</li>
+<li>面试部门：百度糯米音乐事业部<a id="more"></a>
+</li>
 </ul>
-<a id="more"></a>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<pre><code>说道这个属性，简直就是这个插件的神来之笔，这个属性可扩展自己在本地的静态文件服务器。用处太大了。
-
-第一次接触到这个属性是因为想搭一个可以按下ctrl+s之后浏览器自动刷新页面的一个功能，在网上找了找，发现前辈们已经实现了这个功能，而这个技术的**关键点就是通过middleware与长连接，grunt-contrib-watch结合，实现静态注入浏览器中打开的html长连接，非常实用**，听到这个功能还不错的话可以到菜单中的grunt中找找。
-</code></pre><p>好了，如正文了，我们这篇文章要实现一个类似于<strong>模板加载引擎</strong>的功能（将文件中的&lt;!–HeadFragment&gt;&lt;–&gt;&lt;!–/HeadFragment&gt;&lt;–&gt;标签之间添加上一些在head中项目文件可能共有的部分，类似于angularjs中的路由什么的，或者是说jsp，php中的include，require功能）。而这个模板加载引擎的功能就的核心就是匹配，读文件，修改文件后再会写，不同于js中的ajax。</p>
-<p>因为这个只是本地的，所以根本不用考虑性能什么的，因为项目上线的时候不会用到这些项目管理的文件。</p>
-<blockquote>
-<p>首先来看看我们的grunt.init中的connect任务中的配置：</p>
+<pre><code>接到百度的电话是在我在搜狐离职的前一周，然后在离职的最后一天去百度科技园那边面试的。为了保险起见还是提前到了一个小时。在百度科技园逛了一圈儿，还是比较可以的，因为新浪网易腾讯联想的都在，互联网气氛十分的重，不过还是挺喜欢那个地方的，据我观察，楼顶还有跑道，这个就是比较酷炫的！
+</code></pre><blockquote>
+<p>好了 ，不扯其他的 ， 写点正事儿吧。</p>
 </blockquote>
-<p><img src="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/12/QQ截图20151223165820.png" alt=""></p>
-<blockquote>
-<p>如图，middleware后面紧跟一个函数，这个函数会<strong>返回一个数组</strong>，在你请求当前服务器下的某个url时connect就会顺序执行该数组中的函数。</p>
-<p>说清楚middleware的值后让我们来看看它的值是什么鬼（这个我看文档差点没看明白，自己还是太弱）。</p>
+<pre><code>一开始，来了个女前辈面试，给我的气息就是一个偏后端的女程序员，问的问题偏概念和一些网络协议。
+</code></pre><blockquote>
+<p>下面是她的一些问题:</p>
 </blockquote>
-<p><img src="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/12/QQ截图20151223165912.png" alt=""></p>
-<pre><code>在这个数组中，首先我们创建一个自定义函数，我们自己需要的参数有connect中的配置option，当然，**这个不是固定的模式**，主要是看你项目的需要。之后return中的第一个函数就是实现上面说的功能的，具体的地方我可以讲一下，
-</code></pre><p>其中引用了三个参数时connect插件自带的，  <strong> req 是正在请求的对象，eg:req.url返回当前服务器请求的url，res是请求的响应，next指向中间件函数队列中的下一个需要执行的函数，在这里next所指代的就是lrSnippet</strong>，在myMiddleware中就是我所说的读文件，替换，写文件，实现覆盖，具体的都在代码中了，也不复杂，有些函数不懂得话 可以去grunt官网上file操作中看看，挺基础的。然后将自己注册的任务起一下就可以实现我所说的模板引擎了。</p>
+<ul>
+<li>盒模型（IE怪异模式，正常模式）这个我答的border，padding，margin，width，唉 什么鬼！</li>
+<li>跨域（JSONP实现原理）  这个只是了解了一点</li>
+<li>闭包  这个回答的还是比较好</li>
+<li>事件委托（考了我jauery的 on，live ， delgate 区别）  不了解，没答上</li>
+<li>如何使用Js阻塞执行栈  这个的话没答上</li>
+<li>继承  这个勉强答对了</li>
+<li>Http协议过程 res ，req   我真的不是很清楚她想问什么，我把我知道的都给她说了</li>
+<li><p>iframe为什么越来越不常用  这个勉强答上了一点</p>
+<p>  在跟这位女前辈的交流过程中，我发现她问的东西吧 ，可能并不是那么偏前端的，就是我说我经常使用AngularJs ， 她都不了解，也没有问我关于react的东西。这第一面我给自己80分吧。</p>
+</li>
+</ul>
+<blockquote>
+<p>第二面，应该是他们的一个技术leader，技术气息很严重，但是他给我的感觉又完全和腾讯阿里的感觉完全不同。</p>
+</blockquote>
+<pre><code>他上来就拿着一个贴了One Piece贴纸的Mac上来，哎呀我擦，这咱不都是海米吗，哈哈！ 心里顿时放松了些。然后他就问我些angularjs的一些东西，是关于service，provider，factory的，这点答的还是不怎么好，不过勉强这关是过去了。然后有又问了些当用户刷新页面的时候如何保存状态，我答的是localstroge其实并没有get到他的点，他想获得的答案是在url中保存参数，也确实是这样，还是比较方面。总之他这个技术leader问的都是偏设计的问题，我觉得这方面我还是答的比较可以的，这也是为什么我觉得他比较不同的地方。然后最后问了我下有什么想问的吗，我特么听到这里差点就哭了出来，这尼玛终于面到这里了!  但是我说我急着回来，他就让我等等 ， 可能去问了问hr，说我给的时间合不合适，但是根据现在的情况，可能确实不合适，他们急着招人吧，不过不要紧，终于特么证明了自己一次。
+</code></pre><blockquote>
+<p>总结一下就是，关于盒模型，jsonp，http协议过程确实还需要再熟练下！其他的稳健增长就行。哦，对了，给他们leader聊得时候他说他们现在全部转战<code>react</code>和<code>webpack</code>了， 我也得抓紧。</p>
+</blockquote>
 </the>
       
     </div>
@@ -317,13 +321,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/12/23/grunt-contrib-connect-中间件middleware属性/">grunt-contrib-connect 中间件middleware属性</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/16/百度糯米面试体会/">百度糯米面试体会</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
-        <p><span>发布时间:</span>2015-12-23, 17:20:58</p>
-        <p><span>最后更新:</span>2016-05-21, 10:17:05</p>
+        <p><span>发布时间:</span>2016-06-16, 19:02:58</p>
+        <p><span>最后更新:</span>2016-06-16, 19:35:18</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/12/23/grunt-contrib-connect-中间件middleware属性/" title="grunt-contrib-connect 中间件middleware属性">http://CodingJoker.github.io/2015/12/23/grunt-contrib-connect-中间件middleware属性/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2015/12/23/grunt-contrib-connect-中间件middleware属性/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/16/百度糯米面试体会/" title="百度糯米面试体会">http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -335,16 +339,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/12/24/拿什么拯救你的激情，我的同胞/">
-                    拿什么拯救你的激情，我的同胞
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/12/21/Js实现浏览器下标签页间切换触发的事件/">
-                    Js实现浏览器下标签页间切换触发的事件
+                <a href="/2016/06/01/Angular双向数据绑定原理/">
+                    Angular双向数据绑定原理
                 </a>
             </div>
         
@@ -412,7 +410,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"grunt-contrib-connect 中间件middleware属性　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"百度糯米面试体会　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -428,7 +426,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/12/23/grunt-contrib-connect-中间件middleware属性/" data-title="grunt-contrib-connect 中间件middleware属性" data-url="http://CodingJoker.github.io/2015/12/23/grunt-contrib-connect-中间件middleware属性/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/16/百度糯米面试体会/" data-title="百度糯米面试体会" data-url="http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -452,15 +450,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/12/24/拿什么拯救你的激情，我的同胞/" title="上一篇: 拿什么拯救你的激情，我的同胞">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/12/21/Js实现浏览器下标签页间切换触发的事件/" title="下一篇: Js实现浏览器下标签页间切换触发的事件">
+            <a href="/2016/06/01/Angular双向数据绑定原理/" title="下一篇: Angular双向数据绑定原理">
                 <i class="fa fa-angle-right"></i>
             </a>
         
