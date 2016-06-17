@@ -3,23 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye） | JumorZhu&#39;s Labs</title>
+  <title>百度糯米面试体会 | JumorZhu&#39;s Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="grunt中三个插件实现代码保存并自动刷新
-源码教程！源码教程！源码教程！">
+  <meta name="description" content="面试地点：百度科技园5号楼
+面试部门：百度糯米音乐事业部">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）">
-<meta property="og:url" content="http://CodingJoker.github.io/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/index.html">
+<meta property="og:title" content="百度糯米面试体会">
+<meta property="og:url" content="http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/index.html">
 <meta property="og:site_name" content="JumorZhu's Labs">
-<meta property="og:description" content="grunt中三个插件实现代码保存并自动刷新
-源码教程！源码教程！源码教程！">
-<meta property="og:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/11/QQ截图20151127202257.png">
-<meta property="og:updated_time" content="2016-05-25T11:55:27.000Z">
+<meta property="og:description" content="面试地点：百度科技园5号楼
+面试部门：百度糯米音乐事业部">
+<meta property="og:updated_time" content="2016-06-17T05:40:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）">
-<meta name="twitter:description" content="grunt中三个插件实现代码保存并自动刷新
-源码教程！源码教程！源码教程！">
-<meta name="twitter:image" content="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/11/QQ截图20151127202257.png">
+<meta name="twitter:title" content="百度糯米面试体会">
+<meta name="twitter:description" content="面试地点：百度科技园5号楼
+面试部门：百度糯米音乐事业部">
   
     <link rel="alternative" href="/atom.xml" title="JumorZhu&#39;s Labs" type="application/atom+xml">
   
@@ -246,11 +244,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-百度糯米面试体会" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/" class="article-date">
-      <time datetime="2015-11-27T12:39:41.000Z" itemprop="datePublished">2015-11-27</time>
+      <a href="/2016/06/16/百度糯米面试体会/" class="article-date">
+      <time datetime="2016-06-16T11:02:58.000Z" itemprop="datePublished">2016-06-16</time>
 </a>
     </div>
   
@@ -263,7 +261,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）
+      百度糯米面试体会
     </h1>
   
 
@@ -271,10 +269,6 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Gulp-Grunt/">Gulp / Grunt</a>
-    </div>
-
 
         
         <div class="clearfix"></div>
@@ -286,100 +280,40 @@
           
         <p><excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
 <ul>
-<li>grunt中三个插件实现代码保存并自动刷新</li>
-<li>源码教程！源码教程！源码教程！<a id="more"></a>
-<the rest="" of="" contents="" |="" 余下全文=""><br><span style="font-family: 'trebuchet ms', geneva; font-size: xx-large;">作为一个Front  End  Developer，要是不会简化自己的操作，你就OUT了！</span></the></li>
+<li>面试地点：百度科技园5号楼</li>
+<li>面试部门：百度糯米音乐事业部<a id="more"></a>
+</li>
 </ul>
-<p><span style="font-size: large;">好了，我说说接下来我们要做什么，怎么做。</span></p>
-<p><span style="font-size: large;">首先，你要用grunt，你得需要有npm环境，而npm是node.js附带的，所以你需要装以下node.js。什么？！你居然不知道什么是grunt？！npm？！node.s？！自（慢）己（走）百（不）度（送）~（！）。咱就按下暂停键，等你安装好了再回来见我！</span></p>
-<p><span style="font-size: large;">安好了是吧，grunt的例子教程看了下没有？  package.json 和 Gruntfiles.js你需要自己配置的哦~这点应该不难吧。。。</span></p>
-<p><span style="font-size: x-large;">嗯，正式入题：</span><br><span style="font-size: large;">有没有想过当你在你得编辑器里按下ctrl+s的时候，你的页面会自动刷新？就像那个慢的要死的IDE Dreamweaver一样，我才用了两天就没有用了，还是sublime大法好，骚年，你值得入手。扯远了，我们用grunt的目的就是这个，ctrl+s自动刷新。</span></p>
-<p><span style="font-size: large;">对，你没有听错。</span></p>
-<p><span style="font-size: large;">有没有觉得超级酷炫？！嗯，让我给你娓娓道来~~~</span></p>
-<p><span style="font-size: large;">我们需要用到的四个插件  ： grunt-contrib-server ， grunt-contrib-watch ， grunt-open, connect-livereload自己用npm install下载下来。</span></p>
-<p><span style="font-size: large;">最重要的一步来了，我先上代码：</span></p>
-<ol>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">module.exports = function(grunt) {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// LiveReload的默认端口号，你也可以改成你想要的端口号</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var conf = {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">src:’webapp’,</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">port:8083,</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">host:’10.2.98.80’,</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">base:’webapp’</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var lrPort = 35729;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 使用connect-livereload模块，生成一个与LiveReload脚本</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// &lt;script src=”<a href="http://127.0.0.1:35729/livereload.js?snipver=1" target="_blank" rel="external">http://127.0.0.1:35729/livereload.js?snipver=1</a>“ type=”text/javascript”&gt;&lt;/script&gt;</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var lrSnippet = require(‘connect-livereload’)({</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">port: lrPort</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">});</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// var proxySnippet = require(‘grunt-connect-proxy/lib/utils’).proxyRequest; //启用代理</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 使用 middleware(中间件)，就必须关闭 LiveReload 的浏览器插件</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var lrMiddleware = function(connect, options) {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">return [</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// proxySnippet,</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">lrSnippet, // 长连接脚本 注入到静态文件中</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">connect.static(options.base[0]), // 静态文件服务器的路径</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">connect.directory(options.base[0]) // 启用目录浏览(相当于IIS中的目录浏览)</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">];</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">};</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 项目配置(任务配置)</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">grunt.initConfig({</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 读取我们的项目配置并存储到pkg属性中</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">pkg: grunt.file.readJSON(‘package.json’),</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 通过connect任务，创建一个静态服务器</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">connect: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">options: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 服务器端口号</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">port: conf.port,</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 服务器地址(可以使用主机名localhost，也能使用IP)</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">//hostname: ‘10.2.98.73’,</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">hostname: conf.host, //无线</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 物理路径(默认为. 即根目录) 注：使用’.’或’..’为路径的时，可能会返回403 Forbidden. 此时将该值改为相对路径 如：/grunt/reloard。</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">base: conf.base</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">},</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">livereload: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">options: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">middleware: lrMiddleware // 通过LiveReload脚本，让页面重新加载。</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">},</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 通过watch任务，来监听文件是否有更改</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">watch: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">client: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 我们不需要配置额外的任务，watch任务已经内建LiveReload浏览器刷新的代码片段。</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">options: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">livereload: lrPort</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">},</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// ‘**’ 表示包含所有的子目录</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// ‘*’ 表示包含所有的文件</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">files: [conf.src+’/<em>.html’, conf.src+’/css/</em>‘, conf.src+’/js/<em>‘, conf.src+’/images/**/</em>‘]</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">},</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">open: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">server: {</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">path: ‘<a href="http://&lt;%=" target="_blank" rel="external">http://&lt;%=</a> connect.options.hostname %&gt;:&lt;%= connect.options.port %&gt;’</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}); // grunt.initConfig配置完毕</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 加载插件</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">grunt.loadNpmTasks(‘grunt-contrib-connect’);</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">grunt.loadNpmTasks(‘grunt-contrib-watch’);</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">grunt.loadNpmTasks(‘grunt-open’);</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">// 自定义任务</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">grunt.registerTask(‘server’, [‘connect:livereload’, ‘open:server’, ‘watch’]);</span></li>
-<li><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">};</span><br><span style="font-family: 'trebuchet ms', geneva; font-size: large;">看了下代码，有点感觉了没有?</span></li>
-</ol>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">我的目录是这样的：</span><br><a href="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/11/QQ截图20151127202257.png" target="_blank" rel="external"><img src="http://jumorzhumin-wordpress.stor.sinaapp.com/uploads/2015/11/QQ截图20151127202257.png" alt="" title="QQ截图20151127202257"></a><strong><span style="font-family: 'trebuchet ms', geneva; font-size: large;"> src目录可以忽略</span></strong>，本人比较懒，不想去删了。</p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">然后conf中的src是需要是grunt-contrib-watch需要监听文件改变的目录（以下所说的，和代码里的目录都是相对gruntfile.js的）。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">然后你可以结合我的代码来理解插件得配置参数，多的东西都属于自己掌握的范畴，因为代码和注释都有了，碗都给你了，还要给你添饭吗，哈哈哈。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">还是提示下，我们用到的connect-livereload是一个用来将静态脚本注入对应的长连接中的插件。watch的livereload配置服务端口，然后在配置外围的lrMiddleware函数用来将server和watch联系在一起的一个函数，非常重要，还可以设置代理，这里就不多提了。</span></p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">这个办法可以大大提升你coding的效率。非常酷炫~~~~</span></p>
-<p>&nbsp;</p>
-<hr>
-<p>&nbsp;</p>
-<p><span style="font-family: 'trebuchet ms', geneva; font-size: large;">若需深入交流，<strong><a href="http://jumorzhumin.sinaapp.com/%E5%85%B3%E4%BA%8E%E6%88%91/" target="_blank" rel="external">点击这里~~~</a></strong></span></p>
+<the rest="" of="" contents="" |="" 余下全文="">
 
+<pre><code>接到百度的电话是在我在搜狐离职的前一周，然后在离职的最后一天去百度科技园那边面试的。为了保险起见还是提前到了一个小时。在百度科技园逛了一圈儿，还是比较可以的，因为新浪网易腾讯联想的都在，互联网气氛十分的重，不过还是挺喜欢那个地方的，据我观察，楼顶还有跑道，这个就是比较酷炫的！
+</code></pre><blockquote>
+<p>好了 ，不扯其他的 ， 写点正事儿吧。</p>
+</blockquote>
+<pre><code>一开始，来了个女前辈面试，给我的气息就是一个偏后端的女程序员，问的问题偏概念和一些网络协议。
+</code></pre><blockquote>
+<p>下面是她的一些问题:</p>
+</blockquote>
+<ul>
+<li>盒模型（IE怪异模式，正常模式）这个我答的border，padding，margin，width，唉 什么鬼！</li>
+<li>跨域（JSONP实现原理）  这个只是了解了一点</li>
+<li>闭包  这个回答的还是比较好</li>
+<li>事件委托（考了我jauery的 on，live ， delgate 区别）  不了解，没答上</li>
+<li>如何使用Js阻塞执行栈  这个的话没答上</li>
+<li>继承  这个勉强答对了</li>
+<li>Http协议过程 res ，req   我真的不是很清楚她想问什么，我把我知道的都给她说了</li>
+<li><p>iframe为什么越来越不常用  这个勉强答上了一点</p>
+<p>  在跟这位女前辈的交流过程中，我发现她问的东西吧 ，可能并不是那么偏前端的，就是我说我经常使用AngularJs ， 她都不了解，也没有问我关于react的东西。这第一面我给自己80分吧。</p>
+</li>
+</ul>
+<blockquote>
+<p>第二面，应该是他们的一个技术leader，技术气息很严重，但是他给我的感觉又完全和腾讯阿里的感觉完全不同。</p>
+</blockquote>
+<pre><code>他上来就拿着一个贴了One Piece贴纸的Mac上来，哎呀我擦，这咱不都是海米吗，哈哈！ 心里顿时放松了些。然后他就问我些angularjs的一些东西，是关于service，provider，factory的，这点答的还是不怎么好，不过勉强这关是过去了。然后有又问了些当用户刷新页面的时候如何保存状态，我答的是localstroge其实并没有get到他的点，他想获得的答案是在url中保存参数，也确实是这样，还是比较方面。总之他这个技术leader问的都是偏设计的问题，我觉得这方面我还是答的比较可以的，这也是为什么我觉得他比较不同的地方。然后最后问了我下有什么想问的吗，我特么听到这里差点就哭了出来，这尼玛终于面到这里了!  但是我说我急着回来，他就让我等等 ， 可能去问了问hr，说我给的时间合不合适，但是根据现在的情况，可能确实不合适，他们急着招人吧，不过不要紧，终于特么证明了自己一次。
+</code></pre><blockquote>
+<p>总结一下就是，关于盒模型，jsonp，http协议过程确实还需要再熟练下！其他的稳健增长就行。哦，对了，给他们leader聊得时候他说他们现在全部转战<code>react</code>和<code>webpack</code>了， 我也得抓紧。</p>
+</blockquote>
+</the>
       
     </div>
     
@@ -387,13 +321,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/">使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/16/百度糯米面试体会/">百度糯米面试体会</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JumorZhu</a></p>
-        <p><span>发布时间:</span>2015-11-27, 20:39:41</p>
-        <p><span>最后更新:</span>2016-05-25, 19:55:27</p>
+        <p><span>发布时间:</span>2016-06-16, 19:02:58</p>
+        <p><span>最后更新:</span>2016-06-17, 13:40:34</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/" title="使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）">http://CodingJoker.github.io/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/16/百度糯米面试体会/" title="百度糯米面试体会">http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/　　作者: JumorZhu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -405,16 +339,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/12/01/Canvas画布的一些实用技巧/">
-                    Canvas画布的一些实用技巧
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/11/22/这是一种热爱/">
-                    这是一种热爱
+                <a href="/2016/06/01/Angular双向数据绑定原理/">
+                    Angular双向数据绑定原理
                 </a>
             </div>
         
@@ -482,7 +410,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"百度糯米面试体会　| JumorZhu's Labs　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -498,7 +426,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/" data-title="使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5 say goodbye）" data-url="http://CodingJoker.github.io/2015/11/27/使用grunt中三个插件实现代码保存并自动刷新（记住！是自动，跟F5-say-goodbye）/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/16/百度糯米面试体会/" data-title="百度糯米面试体会" data-url="http://CodingJoker.github.io/2016/06/16/百度糯米面试体会/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -522,15 +450,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/12/01/Canvas画布的一些实用技巧/" title="上一篇: Canvas画布的一些实用技巧">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/11/22/这是一种热爱/" title="下一篇: 这是一种热爱">
+            <a href="/2016/06/01/Angular双向数据绑定原理/" title="下一篇: Angular双向数据绑定原理">
                 <i class="fa fa-angle-right"></i>
             </a>
         
