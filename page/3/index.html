@@ -94,7 +94,7 @@
         <hgroup>
           <h1 class="header-author"><a href="/">JumorZhu</a></h1>
            <div class="total-word-count">
-              <span class="post-count">这货已写了 30.6k 个字了</span>
+              <span class="post-count">这货已写了 35.4k 个字了</span>
            </div>
         </hgroup>
 
@@ -175,7 +175,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端小记/">前端小记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a></li></ul>
                     </div>
                 </section>
                 
@@ -208,7 +208,7 @@
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到主页">JumorZhu</a></h1>
               <div class="total-word-count">
-              <span class="post-count">这货已写了 30.6k 个字了</span>
+              <span class="post-count">这货已写了 35.4k 个字了</span>
               </div>
             </hgroup>
             
@@ -246,6 +246,76 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Js实现浏览器下标签页间切换触发的事件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/21/Js实现浏览器下标签页间切换触发的事件/" class="article-date">
+      <time datetime="2015-12-21T07:16:56.000Z" itemprop="datePublished">2015-12-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/21/Js实现浏览器下标签页间切换触发的事件/">Js实现浏览器下标签页间切换触发的事件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <pre><span style="font-family: 'trebuchet ms', geneva; font-size: large;">visibilitychange事件是浏览器新添加的一个事件，当浏览器的某个标签页切换到后台，或从后台切换到前台时就会触发该消息，现在主流的浏览器都支持该消息了，例如Chrome, Firefox, IE10等。</span></pre>
+<pre><span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var hiddenProperty = 'hidden' in document ? 'hidden' :    </span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">    'webkitHidden' in document ? 'webkitHidden' :    </span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">    'mozHidden' in document ? 'mozHidden' :    </span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">    null;</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">var onVisibilityChange = function(){</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">    if (!document[hiddenProperty]) {    </span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">        console.log('页面非激活');</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">    }else{</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">        console.log('页面激活')</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">    }</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">}</span>
+<span style="font-family: 'trebuchet ms', geneva; font-size: medium;">document.addEventListener(visibilityChangeEvent, onVisibilityChange);</span></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/大犀牛JavaScript/">大犀牛JavaScript</a>
+    </div>
+
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Js内各种宽度，干货哟" class="article article-type-post" itemscope itemprop="blogPost">
   
